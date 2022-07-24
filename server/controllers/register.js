@@ -37,12 +37,11 @@ export const getUserInfo = async (req, res) => {
       last_name,
       username,
       password: hash,
-      email,
+      email: email.toLowerCase(),
     })
       .then((response) => response)
       .catch((err) => console.log(err.message));
     res.status(200).json({ msg: `You have been registered successfully! 😀` });
-    return;
   }
 };
 
@@ -50,8 +49,9 @@ export const getUserLoginInfo = async (req, res) => {
   const { username, password } = req.body;
   //Check if username exist
   const usernameIsExist = await checkIfExist("users", { username });
-  if (!usernameIsExist)
+  if (!usernameIsExist) {
     res.status(404).json({ msg: "Sorry you have to register first!" });
+  }
 
   //Compare password
   const hashedPassword = await getProperty("users", "password", { username });
@@ -59,35 +59,31 @@ export const getUserLoginInfo = async (req, res) => {
     password,
     hashedPassword[0].password
   );
-
   //Give a token to the user after password has been verified
   if (verifyPassword) {
     const userInfo = await getProperty("users", "user_id", { username });
     const userId = userInfo[0].user_id;
+    //create token
 
-    const token = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "1h",
+    const token = jwt.sign(
+      { userId, username },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+    // send token to the browser by cookie - not working
+    // res.set({
+    //   "Access-Control-Allow-Credentials": true,
+    //   "Access-Control-Allow-Origin": "*",
+    // });
+    res.cookie("token", "token", {
+      httpOnly: true,
     });
-    res.json({ auth: true, token });
+
+    //Send back the token
+    res.send({ token });
   } else {
     res.status(401).send({ msg: "Invalid password" });
   }
-};
-
-//Test token
-export const test = (req, res) => {
-  res.json({ auth: true });
-};
-
-export const authenticateToken = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (token == null) return res.status(401).send("Must send a token");
-  // console.log(token);
-  // console.log(process.env.ACCESS_TOKEN_SECRET);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-    // console.log("err =>", err);
-    // console.log("decoded =>", decoded);
-    if (err) return res.status(403).send("Token no longer valid");
-    next();
-  });
 };

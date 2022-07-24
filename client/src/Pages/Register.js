@@ -35,7 +35,7 @@ function Register(props) {
       //Send userInfo to DB
       const sendUserInfoToDB = await axios({
         method: "POST",
-        url: "http://localhost:3000/info/register",
+        url: `${process.env.REACT_APP_URL}/info/register`,
         data: userRegisterInfo,
       });
       navigate("/login");

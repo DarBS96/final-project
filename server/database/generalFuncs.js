@@ -4,6 +4,10 @@ export const pushUserInfoToDB = (table, property) => {
   return db.table(table).insert(property).returning("*");
 };
 
+export const pushAnyInfoToDB = (table, property, where) => {
+  return db.table(table).insert(property).where(where).returning("*");
+};
+
 export const checkIfExist = (table, property) => {
   const isExist = db(table)
     .select("*")

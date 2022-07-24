@@ -8,6 +8,9 @@ const initialState = {
     email: "",
     password: "",
   },
+  token: {
+    token: "",
+  },
 };
 
 const registerReducer = createSlice({
@@ -21,9 +24,13 @@ const registerReducer = createSlice({
     restartRegisterInfo: (state, action) => {
       state.userRegisterInfo = initialState.userRegisterInfo;
     },
+    saveToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { getRegisterInfo, restartRegisterInfo } = registerReducer.actions;
+export const { saveToken, getRegisterInfo, restartRegisterInfo } =
+  registerReducer.actions;
 
 export default registerReducer.reducer;

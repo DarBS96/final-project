@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import ".././css/login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { saveToken } from "../Redux/features/registerSlice";
 
 function Login(props) {
   // const { userRegisterInfo } = useSelector((store) => store.registerReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExist, setIsExist] = useState({
     isExist: true,
@@ -29,6 +32,9 @@ function Login(props) {
         data: isExist,
       });
       console.log(data);
+      //Getting the token from the server
+      const { token } = data.data;
+      dispatch(saveToken(token));
       navigate("/home");
     } catch (err) {
       console.log(err);
