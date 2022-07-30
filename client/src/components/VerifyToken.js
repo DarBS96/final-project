@@ -11,7 +11,7 @@ function VerifyToken() {
         // Send token by header to server
         const data = await axios({
           method: "GET",
-          url: `${process.env.REACT_APP_URL}/feelingEat`,
+          url: `${process.env.REACT_APP_URL}/auth`,
           headers: {
             Authorization: token,
           },
