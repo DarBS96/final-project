@@ -18,6 +18,7 @@ app.use(cookieParser());
 import routerUserInfo from "./routes/register.js";
 import routerFeelingEat from "./routes/feelingEat.js";
 import routerRecipes from "./routes/recipes.js";
+import App from "../client/src/App.js";
 // import routerAuth from "./routes/authToken.js";
 
 //routes
@@ -27,5 +28,10 @@ app.use("/info", routerUserInfo);
 
 //Both routes will start in "feelingEat"
 app.use("/feelingEat", routerFeelingEat, routerRecipes);
+
+//Verify token to move on to the next component
+app.get("/auth", (req, res) => {
+  res.send("valid auth");
+});
 
 app.listen(port, () => console.log(`server running on port ${port}`));
