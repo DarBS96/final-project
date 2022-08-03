@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { selectedFeeling } from "../../Redux/features/feelingSlice";
+import "../../css/feelings/feeling.css";
+
 function Feeling({ feeling }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ function Feeling({ feeling }) {
   };
   return (
     <div
+      className="feeling"
       id={feeling.feeling_id}
       onClick={handleClick}
       style={{ cursor: "pointer" }}

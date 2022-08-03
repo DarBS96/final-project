@@ -10,6 +10,7 @@ const initialState = {
   },
   token: {
     token: "",
+    isLogin: false,
   },
 };
 
@@ -27,10 +28,13 @@ const registerReducer = createSlice({
     saveToken: (state, action) => {
       state.token = action.payload;
     },
+    isLogin: (state, action) => {
+      state.isLogin = true;
+    },
   },
 });
 
-export const { saveToken, getRegisterInfo, restartRegisterInfo } =
+export const { saveToken, getRegisterInfo, restartRegisterInfo, isLogin } =
   registerReducer.actions;
 
 export default registerReducer.reducer;

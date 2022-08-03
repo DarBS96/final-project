@@ -1,3 +1,8 @@
+.register-title {
+    font-family: "Pacifico", cursive;
+    margin-top: 20px;
+}
+
 .register-form-input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -5,16 +10,30 @@
     width: 300px;
     border: none;
     border-bottom: 1px solid #757575;
+    width: 250px;
+    margin: auto;
 }
 
 .register-form-input:focus {
     outline: none;
 }
 
-.register-container {
+.register-form {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+    box-shadow: 5px 5px 10px 1px #bcb7b7;
+    width: 300px;
+    margin: auto;
+    border-radius: 15px;
+    height: 350px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.inputs-register-container {
     height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    width: 300px;
 }

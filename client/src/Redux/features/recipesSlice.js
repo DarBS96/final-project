@@ -1,5 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes`;
@@ -9,6 +8,9 @@ const initialState = {
   isLoading: true,
   rating: 0,
   views: 0,
+  comments: null,
+  username: "",
+  refreshComments: false,
 };
 
 export const getRecipes = createAsyncThunk(
@@ -26,8 +28,7 @@ export const getRecipes = createAsyncThunk(
           id,
         },
       });
-      console.log(data);
-      return data;
+      return data.data;
     } catch (err) {
       console.log(err);
       //By this way we can get the custom rejected message in the payload
@@ -43,12 +44,18 @@ const recipesReducer = createSlice({
     selectedRecipe: (state, action) => {
       state.recipes = action.payload;
     },
-    addingRecipeView: (state, action) => {
-      state.views = state.views + 1;
+    recipeViews: (state, action) => {
+      state.views = action.payload;
     },
-    addingRating: (state, action) => {
+    ratingAvg: (state, action) => {
       state.rating = action.payload;
-      console.log(current(state));
+    },
+    showAllComments: (state, action) => {
+      state.comments = action.payload.comments;
+      state.username = action.payload.username;
+    },
+    refreshComments: (state, action) => {
+      state.refreshComments = action.payload;
     },
   },
   extraReducers: {
@@ -58,7 +65,7 @@ const recipesReducer = createSlice({
     [getRecipes.fulfilled]: (state, action) => {
       //The payload in the action is the data that we returning from getFeelings func
       state.isLoading = false;
-      state.recipes = action.payload.data;
+      state.recipes = action.payload;
     },
     [getRecipes.rejected]: (state, action) => {
       state.isLoading = false;
@@ -67,10 +74,11 @@ const recipesReducer = createSlice({
 });
 
 export const {
-  addingRating,
+  ratingAvg,
   selectedRecipe,
-  displayRecipesBasedFeeling,
-  addingRecipeView,
+  recipeViews,
+  showAllComments,
+  refreshComments,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

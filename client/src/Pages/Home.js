@@ -4,10 +4,9 @@ import VerifyToken from "../components/VerifyToken";
 function Home(props) {
   return (
     <div>
-      <h1>Let's start Feelingeat</h1>
-      {/* <VerifyToken> */}
-      <FeelingsList />
-      {/* </VerifyToken> */}
+      <VerifyToken>
+        <FeelingsList />
+      </VerifyToken>
     </div>
   );
 }

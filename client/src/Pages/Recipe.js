@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import StarRating from "../components/recipes/StarRating";
-import Comment from "../components/recipes/Comment";
+import AddComment from "../components/recipes/comments/AddComment";
+import { useEffect, useState } from "react";
+import DisplayComments from "../components/recipes/comments/DisplayComments";
 function Recipe(props) {
-  const { recipes, views } = useSelector((store) => store.recipesSlice);
+  const { recipes, views, comments } = useSelector(
+    (store) => store.recipesSlice
+  );
   const {
     recipe_title,
     recipe_body,
@@ -13,16 +16,13 @@ function Recipe(props) {
     recipe_img,
     recipe_id,
   } = recipes[0];
-
   let options = {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   };
-
   const date = new Date(recipe_date).toLocaleString("en-US", options);
-
   return (
     <div id={recipe_id} className="recipe-container">
       <h1>{recipe_title}</h1>
@@ -32,7 +32,7 @@ function Recipe(props) {
         alt="fds"
       />
       <br />
-      <StarRating id={recipe_id} />
+      <StarRating id={recipe_id} recipe_id={recipe_id} />
       <h2>Views:</h2>
       <p>{views}</p>
       <button>Save</button>
@@ -44,8 +44,8 @@ function Recipe(props) {
       <p>{recipe_author}</p>
       <h2>Write at:</h2>
       <p>{date}</p>
-      <Comment />
-      <h2>My meals in navbar</h2>
+      <DisplayComments />
+      <AddComment recipe_id={recipe_id} />
     </div>
   );
 }

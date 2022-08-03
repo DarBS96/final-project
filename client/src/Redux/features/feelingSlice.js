@@ -24,8 +24,7 @@ export const getFeelings = createAsyncThunk(
           Authorization: token,
         },
       });
-      console.log(data);
-      return data;
+      return data.data;
     } catch (err) {
       //By this way we can get the custom rejected message in the payload
       return thunkAPI.rejectWithValue("something went wrong");
@@ -47,7 +46,7 @@ const feelingReducer = createSlice({
     [getFeelings.fulfilled]: (state, action) => {
       //The payload in the action is the data that we returning from getFeelings func
       state.isLoading = false;
-      state.feelings = action.payload.data;
+      state.feelings = action.payload;
     },
     [getFeelings.rejected]: (state, action) => {
       state.isLoading = false;

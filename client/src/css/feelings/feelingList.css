@@ -1,0 +1,10 @@
+.feelingList-title {
+    font-family: "Pacifico", cursive;
+    margin-top: 20px;
+}
+
+.feelings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

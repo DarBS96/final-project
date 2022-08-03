@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ".././css/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { saveToken } from "../Redux/features/registerSlice";
+import { saveToken, isLogin } from "../Redux/features/registerSlice";
+import Button from "react-bootstrap/Button";
 
 function Login(props) {
   // const { userRegisterInfo } = useSelector((store) => store.registerReducer);
@@ -24,22 +25,23 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // e.preventDefault();
     try {
       //Send user login info to DB
       const data = await axios({
         method: "POST",
         url: "http://localhost:3000/info/login",
-        data: isExist,
+        data: { username: isExist.username, password: isExist.password },
       });
-      console.log(data);
       //Getting the token from the server
       const { token } = data.data;
       dispatch(saveToken(token));
+      dispatch(isLogin());
       navigate("/home");
     } catch (err) {
       console.log(err);
       if (err.response.status === 404) {
-        setIsExist({ isExist: false, msg: err.response.data.msg });
+        setIsExist({ ...isExist, isExist: false, msg: err.response.data.msg });
       } else if (err.response.status === 401) {
         setIsExist({
           ...isExist,
@@ -53,36 +55,44 @@ function Login(props) {
   return (
     <div>
       <div className="login-container">
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            className="login-form-input"
-            type="text"
-            placeholder="username"
-            name="username"
-          />
-          <input
-            onChange={handleChange}
-            className="login-form-input"
-            type="password"
-            placeholder="password"
-            name="password"
-          />
-          <button className="btn-login">Login</button>
+        <h1 className="login-title">Good to see you :)</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="inputs-container">
+            <input
+              onChange={handleChange}
+              className="login-form-input"
+              type="text"
+              placeholder="username"
+              name="username"
+              required
+            />
+            <input
+              onChange={handleChange}
+              className="login-form-input"
+              type="password"
+              placeholder="password"
+              name="password"
+              required
+            />
+          </div>
+          <Button type="submit" className="btn" variant="dark ">
+            Login
+          </Button>
         </form>
-        {!isExist.isExist && (
-          <div>
-            <p>{isExist.msg}</p>
-            <button onClick={() => navigate("/register")}>Register</button>
-          </div>
-        )}
-        {!isExist.validPassword && (
-          <div>
-            <p>{isExist.msg}</p>
-          </div>
-        )}
+        <Link style={{ color: "black" }} to={"/register"}>
+          Not registered yet? sign up!
+        </Link>
       </div>
+      {!isExist.isExist && (
+        <div style={{ marginTop: "20px" }}>
+          <p>{isExist.msg}</p>
+        </div>
+      )}
+      {!isExist.validPassword && (
+        <div style={{ marginTop: "20px" }}>
+          <p>{isExist.msg}</p>
+        </div>
+      )}
     </div>
   );
 }

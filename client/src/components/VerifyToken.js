@@ -1,9 +1,11 @@
-import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function VerifyToken() {
+function VerifyToken({ children }) {
+  const [isAuth, setIsAuth] = useState(null);
+  const navigate = useNavigate();
   const token = useSelector((store) => store.registerReducer.token);
   useEffect(() => {
     const sendTokenToServer = async () => {
@@ -16,15 +18,17 @@ function VerifyToken() {
             Authorization: token,
           },
         });
-        console.log(data);
+        if (data.status === 200) setIsAuth(true);
       } catch (err) {
         console.log(err);
+        setIsAuth(false);
+        navigate("/login");
       }
     };
     sendTokenToServer();
   }, []);
 
-  return <div></div>;
+  return isAuth ? children : null;
 }
 
 export default VerifyToken;

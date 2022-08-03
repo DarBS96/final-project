@@ -1,3 +1,8 @@
+.login-title {
+    font-family: "Pacifico", cursive;
+    margin-top: 20px;
+}
+
 .login-form-input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -5,10 +10,20 @@
     width: 300px;
     border: none;
     border-bottom: 1px solid #757575;
+    width: 200px;
+    margin: auto;
 }
 
 .login-form-input:focus {
     outline: none;
+}
+
+.login-form {
+    box-shadow: 5px 5px 10px 1px #bcb7b7;
+    margin-top: 30px;
+    border-radius: 15px;
+    height: 250px;
+    margin-bottom: 30px;
 }
 
 .login-container {
@@ -16,5 +31,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 300px;
+}
+
+.inputs-container {
+    height: 200px;
+    background-color: white;
+    border-radius: 15px;
+    /* margin-top: 30px; */
+    width: 300px;
+}
+
+.btn {
+    margin-top: 6px;
 }

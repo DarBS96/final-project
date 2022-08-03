@@ -1,59 +1,81 @@
 import React, { useEffect } from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "../../css/starRating.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addingRating } from "../../Redux/features/recipesSlice";
+import { ratingAvg } from "../../Redux/features/recipesSlice";
 import axios from "axios";
-const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes`;
+import Rating from "@mui/material/Rating";
+const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
 
-const StarRating = ({ id }) => {
-  const token = useSelector((store) => store.registerReducer.token);
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
-  const [msg, setMsg] = useState("");
-  // const btnElem = useRef();
-
+const StarRating = ({ id, recipe_id }) => {
   const dispatch = useDispatch();
+  const token = useSelector((store) => store.registerReducer.token);
+  const ratingsAvg = useSelector((store) => store.recipesSlice.rating);
+  const [value, setValue] = useState(ratingsAvg);
+  const [ratingIsExist, setRatingIsExist] = useState(false);
+  useEffect(() => {
+    const getRatingAvg = async () => {
+      const data = await axios({
+        method: "POST",
+        url: `${URL}/average`,
+        data: {
+          id,
+          recipe_id,
+        },
+        headers: {
+          Authorization: token,
+        },
+      });
 
-  const handleClick = async (index) => {
-    setRating(index);
-    dispatch(addingRating(rating));
-    //How to remove onMouseEnter after clicking?
-    // and unable user to rate anymore
-    setMsg("Your opinion very important to us!");
+      dispatch(ratingAvg(data.data.ratingAvg));
+      //Check if user can rate
+      if (
+        // if there is no user
+        data.data.rating.length < 1 ||
+        // if there are users that already rated
+        !data.data.rating
+      ) {
+        setRatingIsExist(false);
+      } else {
+        setRatingIsExist(true);
+      }
+      setValue(data.data.ratingAvg);
+    };
+    getRatingAvg();
+  }, [value]);
+
+  const handleChange = async (event, newValue) => {
+    setRatingIsExist(true);
     const data = await axios({
       method: "POST",
       url: URL,
       headers: {
         Authorization: token,
       },
-      params: { id },
+      data: {
+        newValue,
+        id,
+      },
     });
-    console.log(data);
+    setValue(newValue);
   };
   return (
-    <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            // ref={btnElem}
-            id="star-toggle"
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? "on" : "off"}
-            onClick={() => handleClick(index)}
-            // onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span key={index} className="star">
-              &#9733;
-            </span>
-          </button>
-        );
-      })}
-      <p>{msg}</p>
-    </div>
+    <>
+      {ratingsAvg && <div>Average {Number(ratingsAvg).toFixed(1)}</div>}
+      {!ratingIsExist ? (
+        <>
+          <Rating
+            name="simple-controlled"
+            value={Number(value)}
+            onChange={(event, newValue) => handleChange(event, newValue)}
+          />
+        </>
+      ) : (
+        <div>
+          <Rating name="read-only" value={Number(value)} readOnly />
+        </div>
+      )}
+    </>
   );
 };
 export default StarRating;

@@ -8,6 +8,7 @@ import {
   getRegisterInfo,
   restartRegisterInfo,
 } from "../Redux/features/registerSlice";
+import Button from "react-bootstrap/Button";
 
 function Register(props) {
   const dispatch = useDispatch();
@@ -50,57 +51,63 @@ function Register(props) {
 
   return (
     <div>
-      <h1>Good to see you</h1>
-      <form onSubmit={handleSubmit} className="register-container">
-        <input
-          // required
-          onChange={handleChange}
-          className="register-form-input"
-          type="text"
-          placeholder="First Name"
-          name="first_name"
-          value={first_name}
-        />
-        <input
-          // required
-          onChange={handleChange}
-          className="register-form-input"
-          type="text"
-          placeholder="Last Name"
-          name="last_name"
-          value={last_name}
-        />
-        <input
-          // required
-          onChange={handleChange}
-          className="register-form-input"
-          type="text"
-          placeholder="username"
-          name="username"
-          value={username}
-        />
-        <input
-          // required
-          onChange={handleChange}
-          className="register-form-input"
-          type="email"
-          placeholder="email"
-          name="email"
-          value={email}
-        />
-        <input
-          // required
-          onChange={handleChange}
-          className="register-form-input"
-          type="password"
-          placeholder="password"
-          name="password"
-          value={password}
-        />
-        <button className="btn-register">Register</button>
+      <h1 className="register-title">Let's start feelEat!</h1>
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="inputs-register-container">
+          <input
+            onChange={handleChange}
+            className="register-form-input"
+            type="text"
+            placeholder="First Name"
+            name="first_name"
+            value={first_name}
+            required
+          />
+          <input
+            onChange={handleChange}
+            className="register-form-input"
+            type="text"
+            placeholder="Last Name"
+            name="last_name"
+            value={last_name}
+            required
+          />
+          <input
+            required
+            onChange={handleChange}
+            className="register-form-input"
+            type="text"
+            placeholder="username"
+            name="username"
+            value={username}
+          />
+          <input
+            onChange={handleChange}
+            className="register-form-input"
+            type="email"
+            placeholder="email"
+            name="email"
+            value={email}
+            required
+          />
+          <input
+            onChange={handleChange}
+            className="register-form-input"
+            type="password"
+            placeholder="password"
+            name="password"
+            value={password}
+            required
+          />
+        </div>
+        <Button type="submit" className="btn-register" variant="dark ">
+          Register
+        </Button>
       </form>
       {isExist.isExist && <p>{isExist.msg}</p>}
-      <Link to={"/login"}>Already registered? sign in!</Link>
+      <Link style={{ color: "black" }} to={"/login"}>
+        Already registered? sign in!
+      </Link>
     </div>
   );
 }

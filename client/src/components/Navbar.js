@@ -11,7 +11,7 @@ function NavbarComp(props) {
     <div>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to={"/"}>
+          <Navbar.Brand as={Link} to={"/"} className="navbar-brand">
             Feeleat!
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -20,24 +20,18 @@ function NavbarComp(props) {
               <Nav.Link as={Link} to={"/"}>
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to={"/about"}>
-                About
-              </Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
+              <NavDropdown title="My list" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Romantic</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Tipsy</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Lonely</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">Tense</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">Creative</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
+          <Nav.Link as={Link} to={"/login"}>
+            Logout
+          </Nav.Link>
         </Container>
       </Navbar>
     </div>
