@@ -51,39 +51,37 @@ export const getUserLoginInfo = async (req, res) => {
   const usernameIsExist = await checkIfExist("users", { username });
   if (!usernameIsExist) {
     res.status(404).json({ msg: "Sorry you have to register first!" });
-  }
-
-  //Compare password
-  const hashedPassword = await getProperty("users", "password", { username });
-  const verifyPassword = bcrypt.compareSync(
-    password,
-    hashedPassword[0].password
-  );
-  //Give a token to the user after password has been verified
-  if (verifyPassword) {
-    const userInfo = await getProperty("users", "user_id", { username });
-    const userId = userInfo[0].user_id;
-    //create token
-
-    const token = jwt.sign(
-      { userId, username },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-    // send token to the browser by cookie - not working
-    // res.set({
-    //   "Access-Control-Allow-Credentials": true,
-    //   "Access-Control-Allow-Origin": "*",
-    // });
-    res.cookie("token", "token", {
-      httpOnly: true,
-    });
-
-    //Send back the token
-    res.send({ token });
   } else {
-    res.status(401).send({ msg: "Invalid password" });
+    //Compare password
+    const hashedPassword = await getProperty("users", "password", {
+      username,
+    });
+    const verifyPassword = bcrypt.compareSync(
+      password,
+      hashedPassword[0].password
+    );
+    //Give a token to the user after password has been verified
+    if (verifyPassword) {
+      const userInfo = await getProperty("users", "user_id", { username });
+      const userId = userInfo[0].user_id;
+      //create token
+
+      const token = jwt.sign(
+        { userId, username },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+      // send token to the browser by cookie - not working
+      res.cookie("token", "token", {
+        httpOnly: true,
+      });
+
+      //Send back the token
+      res.send({ token });
+    } else {
+      res.status(401).send({ msg: "Invalid password" });
+    }
   }
 };

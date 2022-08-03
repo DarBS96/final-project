@@ -1,16 +1,22 @@
 import express from "express";
 const routerRecipes = express.Router();
+import { getRecipeFromDB, getRecipesFromDB } from "../controllers/recipes.js";
+
 import {
-  getRecipeFromDB,
-  getRecipesFromDB,
   addingRating,
-} from "../controllers/recipes.js";
+  addingViews,
+  getRatingsAvg,
+  addingComment,
+} from "../controllers/recipeDetails.js";
+import { getAllComments } from "../controllers/recipes.js";
 import { authenticateToken } from "../middleware/auth.js";
 
 routerRecipes.get("/recipes", authenticateToken, getRecipesFromDB);
-
 routerRecipes.get("/recipes/:id", authenticateToken, getRecipeFromDB);
-
-routerRecipes.post("/recipes/:id", addingRating);
+routerRecipes.post("/recipes/rating", addingRating);
+routerRecipes.post("/recipes/rating/average", getRatingsAvg);
+routerRecipes.post("/recipes/views", addingViews);
+routerRecipes.post("/recipes/comment", addingComment);
+routerRecipes.post("/recipes/showAllComments", getAllComments);
 
 export default routerRecipes;

@@ -4,10 +4,6 @@ export const pushUserInfoToDB = (table, property) => {
   return db.table(table).insert(property).returning("*");
 };
 
-export const pushAnyInfoToDB = (table, property, where) => {
-  return db.table(table).insert(property).where(where).returning("*");
-};
-
 export const checkIfExist = (table, property) => {
   const isExist = db(table)
     .select("*")
@@ -21,6 +17,14 @@ export const getProperty = (table, property, where) => {
   return db(table).select(property).where(where);
 };
 
-export const getAllProperties = (table) => {
-  return db(table).select("*");
+export const getAllProperties = (table, property) => {
+  return db(table).select(property);
+};
+
+export const updateProperty = (table, property, where) => {
+  return db.table(table).update(property).where(where).returning("*");
+};
+
+export const getAverage = (table, column, property) => {
+  return db.table(table).avg(column).where(property);
 };
