@@ -8,9 +8,6 @@ const initialState = {
   isLoading: true,
   rating: 0,
   views: 0,
-  comments: null,
-  username: "",
-  refreshComments: false,
 };
 
 export const getRecipes = createAsyncThunk(
@@ -49,13 +46,6 @@ const recipesReducer = createSlice({
     },
     ratingAvg: (state, action) => {
       state.rating = action.payload;
-    },
-    showAllComments: (state, action) => {
-      state.comments = action.payload.comments;
-      state.username = action.payload.username;
-    },
-    refreshComments: (state, action) => {
-      state.refreshComments = action.payload;
     },
   },
   extraReducers: {

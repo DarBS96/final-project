@@ -5,7 +5,6 @@ import {
   pushUserInfoToDB,
   updateProperty,
   getProperty,
-  getAverage,
 } from "../database/generalFuncs.js";
 import db from "../database/connection.js";
 

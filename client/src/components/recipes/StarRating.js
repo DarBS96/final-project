@@ -7,7 +7,7 @@ import axios from "axios";
 import Rating from "@mui/material/Rating";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
 
-const StarRating = ({ id, recipe_id }) => {
+const StarRating = ({ recipe_id }) => {
   const dispatch = useDispatch();
   const token = useSelector((store) => store.registerReducer.token);
   const ratingsAvg = useSelector((store) => store.recipesSlice.rating);
@@ -19,7 +19,6 @@ const StarRating = ({ id, recipe_id }) => {
         method: "POST",
         url: `${URL}/average`,
         data: {
-          id,
           recipe_id,
         },
         headers: {
@@ -54,7 +53,7 @@ const StarRating = ({ id, recipe_id }) => {
       },
       data: {
         newValue,
-        id,
+        recipe_id,
       },
     });
     setValue(newValue);

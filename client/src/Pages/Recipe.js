@@ -2,7 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import StarRating from "../components/recipes/StarRating";
 import AddComment from "../components/recipes/comments/AddComment";
 import { useEffect, useState } from "react";
-import DisplayComments from "../components/recipes/comments/DisplayComments";
+import DisplayComments from "../components//allToDisplay/DisplayComments";
+import SaveRecipes from "../components/recipes/SaveRecipe";
+import SaveRecipe from "../components/recipes/SaveRecipe";
 function Recipe(props) {
   const { recipes, views, comments } = useSelector(
     (store) => store.recipesSlice
@@ -32,10 +34,10 @@ function Recipe(props) {
         alt="fds"
       />
       <br />
-      <StarRating id={recipe_id} recipe_id={recipe_id} />
+      <StarRating recipe_id={recipe_id} />
       <h2>Views:</h2>
       <p>{views}</p>
-      <button>Save</button>
+      <SaveRecipe recipe_id={recipe_id} />
       <h2>Ingredients</h2>
       <p>{recipe_ingredients}</p>
       <h2>Method</h2>

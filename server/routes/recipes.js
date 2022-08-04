@@ -8,7 +8,11 @@ import {
   getRatingsAvg,
   addingComment,
 } from "../controllers/recipeDetails.js";
-import { getAllComments } from "../controllers/recipes.js";
+import {
+  getAllComments,
+  displaySavedRecipes,
+  saveRecipe,
+} from "../controllers/recipes.js";
 import { authenticateToken } from "../middleware/auth.js";
 
 routerRecipes.get("/recipes", authenticateToken, getRecipesFromDB);
@@ -18,5 +22,7 @@ routerRecipes.post("/recipes/rating/average", getRatingsAvg);
 routerRecipes.post("/recipes/views", addingViews);
 routerRecipes.post("/recipes/comment", addingComment);
 routerRecipes.post("/recipes/showAllComments", getAllComments);
+routerRecipes.post("/recipes/savedRecipes", displaySavedRecipes);
+routerRecipes.post("/recipes/saveRecipe", saveRecipe);
 
 export default routerRecipes;

@@ -7,15 +7,19 @@ import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import Welcome from "./Pages/Welcome";
 import Recipes from "./Pages/Recipes";
+import DisplaySavedRecipes from "./Pages/DisplaySavedRecipes";
 import Recipe from "./Pages/Recipe";
 import VerifyToken from "./components/VerifyToken";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 //remove navbar when login by update the stor if i'm logging
 
 function App() {
   const isLogin = useSelector((store) => store.registerReducer.isLogin);
+  // const recipe_id = useSelector(
+  //   (store) => store.recipesSlice.recipes[0].recipe_id
+  // );
+  // console.log(recipe_id);
   return (
     <div className="App">
       <Router>
@@ -38,6 +42,14 @@ function App() {
             element={
               <VerifyToken>
                 <Recipe />
+              </VerifyToken>
+            }
+          />
+          <Route
+            path="/savedRecipes/:recipe_id"
+            element={
+              <VerifyToken>
+                <DisplaySavedRecipes />
               </VerifyToken>
             }
           />

@@ -5,8 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function NavbarComp(props) {
+function NavbarComp() {
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -21,11 +22,21 @@ function NavbarComp(props) {
                 Home
               </Nav.Link>
               <NavDropdown title="My list" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Romantic</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Tipsy</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Lonely</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Tense</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Creative</NavDropdown.Item>
+                <Nav.Link as={Link} to={`/savedRecipes/1`}>
+                  Romantic
+                </Nav.Link>
+                <Nav.Link as={Link} to={"/savedRecipes/2"}>
+                  Tipsy
+                </Nav.Link>
+                <Nav.Link as={Link} to={"/savedRecipes/3"}>
+                  Lonely
+                </Nav.Link>
+                <Nav.Link as={Link} to={"/savedRecipes/4"}>
+                  Tense
+                </Nav.Link>
+                <Nav.Link as={Link} to={"/savedRecipes/5"}>
+                  Creative
+                </Nav.Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

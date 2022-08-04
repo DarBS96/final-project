@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import DisplayComments from "./DisplayComments";
-import { refreshComments } from "../../../Redux/features/recipesSlice";
+// import DisplayComments from "../../allToDisplay/DisplayComments";
+import { refreshComments } from "../../../Redux/features/commentSlice";
 
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/comment`;
 function Comment({ recipe_id }) {
