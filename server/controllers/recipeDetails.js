@@ -9,7 +9,7 @@ import {
 import db from "../database/connection.js";
 
 export const addingRating = (req, res, next) => {
-  const { newValue, id } = req.body;
+  const { newValue, recipe_id } = req.body;
   const token = req.headers.authorization;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
@@ -18,7 +18,7 @@ export const addingRating = (req, res, next) => {
     //Get userId
     const getUserId = await getProperty("users_recipes", "user_id", {
       user_id: decoded.userId,
-      recipe_id: id,
+      recipe_id,
     });
 
     // Check if user and recipe are existing in DB if not add all the user data to DB
@@ -26,7 +26,7 @@ export const addingRating = (req, res, next) => {
       await pushUserInfoToDB("users_recipes", {
         user_id: decoded.userId,
         rating: newValue,
-        recipe_id: id,
+        recipe_id,
       });
       //User and recipe are existing
     } else {
@@ -35,7 +35,7 @@ export const addingRating = (req, res, next) => {
         {
           rating: newValue,
         },
-        { user_id: decoded.userId, recipe_id: id }
+        { user_id: decoded.userId, recipe_id }
       );
     }
     res.send();
@@ -96,7 +96,7 @@ export const addingComment = (req, res, next) => {
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    await pushUserInfoToDB("users_recipes", {
+    await pushUserInfoToDB("comments", {
       user_id: decoded.userId,
       comment_date: new Date().toString(),
       comment_title: title,

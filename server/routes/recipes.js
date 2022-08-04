@@ -10,7 +10,7 @@ import {
 } from "../controllers/recipeDetails.js";
 import {
   getAllComments,
-  displaySavedRecipes,
+  displayFilteredRecipesByFeelings,
   saveRecipe,
 } from "../controllers/recipes.js";
 import { authenticateToken } from "../middleware/auth.js";
@@ -22,7 +22,7 @@ routerRecipes.post("/recipes/rating/average", getRatingsAvg);
 routerRecipes.post("/recipes/views", addingViews);
 routerRecipes.post("/recipes/comment", addingComment);
 routerRecipes.post("/recipes/showAllComments", getAllComments);
-routerRecipes.post("/recipes/savedRecipes", displaySavedRecipes);
+routerRecipes.post("/recipes/savedRecipes", displayFilteredRecipesByFeelings);
 routerRecipes.post("/recipes/saveRecipe", saveRecipe);
 
 export default routerRecipes;

@@ -2,7 +2,12 @@ import * as env from "dotenv";
 env.config();
 import jwt from "jsonwebtoken";
 
-import { getProperty, updateProperty } from "../database/generalFuncs.js";
+import {
+  getProperty,
+  updateProperty,
+  pushUserInfoToDB,
+} from "../database/generalFuncs.js";
+import db from "../database/connection.js";
 
 export const getRecipesFromDB = async (req, res) => {
   const { id } = req.headers;
@@ -22,7 +27,7 @@ export const getAllComments = (req, res) => {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
     const comments = await getProperty(
-      "users_recipes",
+      "comments",
       {
         comment_date: "comment_date",
         comment_title: "comment_title",
@@ -41,25 +46,58 @@ export const saveRecipe = (req, res) => {
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    await updateProperty(
-      "users_recipes",
-      { saved },
-      { recipe_id, user_id: decoded.userId }
-    );
+
+    //check if recipe is already saved
+    const recipeIsSaved = await getProperty("users_recipes", "saved", {
+      user_id: decoded.userId,
+      recipe_id,
+    });
+
+    // Check if user and recipe are existing in DB if not add all the user data to DB
+    if (recipeIsSaved.length < 1) {
+      await pushUserInfoToDB("users_recipes", {
+        user_id: decoded.userId,
+        saved,
+        recipe_id,
+      });
+    } else {
+      await updateProperty(
+        "users_recipes",
+        {
+          saved,
+        },
+        { user_id: decoded.userId, recipe_id }
+      );
+    }
   });
 };
 
-export const displaySavedRecipes = async (req, res) => {
-  const { saved, recipe_id } = req.body;
+export const displayFilteredRecipesByFeelings = async (req, res) => {
+  const { saved, feeling_id, recipe_id } = req.body;
   const token = req.headers.authorization;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    const savedRecipe = await getProperty("users_recipes", "*", {
-      recipe_id,
+    //Check what recipes the user saved
+    const checkSavedRecipe = await getProperty("users_recipes", "recipe_id", {
       user_id: decoded.userId,
       saved,
     });
-    res.send(savedRecipe[0]);
+
+    const savedRecipesMappingByNumbers = checkSavedRecipe.map(
+      (recipe) => recipe.recipe_id
+    );
+
+    const filteredSavedRecipes = await db
+      .table("recipes")
+      .select("*")
+      .whereIn("recipe_id", savedRecipesMappingByNumbers)
+      .andWhere({ fk_feeling_id: feeling_id });
+
+    const recipeAlreadySaved = filteredSavedRecipes.some(
+      (recipe) => recipe.recipe_id === recipe_id
+    );
+
+    res.send({ filteredSavedRecipes, recipeAlreadySaved });
   });
 };
