@@ -8,16 +8,16 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/showAllComments`;
 function DisplayComments(props) {
   const token = useSelector((store) => store.registerReducer.token);
   const dispatch = useDispatch();
-  const { recipes, comments, username } = useSelector(
-    (store) => store.recipesSlice
+  const { username, comments, refreshComments } = useSelector(
+    (store) => store.commentSlice
   );
-  const refreshComments = useSelector(
-    (store) => store.recipesSlice.refreshComments
-  );
+  const { recipes } = useSelector((store) => store.recipesSlice);
+
   const [isComment, setIsComment] = useState(false);
 
-  const { recipe_id } = recipes[0];
   useEffect(() => {
+    const { recipe_id } = recipes[0];
+
     const getAllRecipeComments = async () => {
       const data = await axios({
         method: "POST",

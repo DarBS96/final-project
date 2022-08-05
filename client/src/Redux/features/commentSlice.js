@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
-  comments: null,
+  comments: [],
   username: "",
   refreshComments: false,
 };
@@ -11,6 +11,7 @@ const commentsReducer = createSlice({
   initialState,
   reducers: {
     showAllComments: (state, action) => {
+      console.log(action);
       state.comments = action.payload.comments;
       state.username = action.payload.username;
     },

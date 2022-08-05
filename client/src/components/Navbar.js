@@ -5,42 +5,45 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { isLogin } from "../Redux/features/registerSlice";
 
 function NavbarComp() {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(isLogin(false));
+  };
   return (
     <div>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to={"/"} className="navbar-brand">
-            Feeleat!
-          </Navbar.Brand>
+          <Navbar.Brand className="navbar-brand">Feeleat!</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to={"/"}>
+              <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
               <NavDropdown title="My list" id="basic-nav-dropdown">
                 <Nav.Link as={Link} to={`/savedRecipes/1`}>
                   Romantic
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/2"}>
+                <Nav.Link as={Link} to={"/savedRecipes/3"}>
                   Tipsy
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/3"}>
+                <Nav.Link as={Link} to={"/savedRecipes/4"}>
                   Lonely
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/4"}>
+                <Nav.Link as={Link} to={"/savedRecipes/5"}>
                   Tense
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/5"}>
+                <Nav.Link as={Link} to={"/savedRecipes/6"}>
                   Creative
                 </Nav.Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          <Nav.Link as={Link} to={"/login"}>
+          <Nav.Link onClick={handleClick} as={Link} to={"/login"}>
             Logout
           </Nav.Link>
         </Container>

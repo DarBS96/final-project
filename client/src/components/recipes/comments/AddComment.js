@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-// import DisplayComments from "../../allToDisplay/DisplayComments";
 import { refreshComments } from "../../../Redux/features/commentSlice";
 
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/comment`;
@@ -41,8 +40,8 @@ function Comment({ recipe_id }) {
 
     setTimeout(() => {
       dispatch(refreshComments(true));
-      //change to false so it will be able to rerender at DisplayComments component
-    }, 200);
+      //change to false back so it will be able to rerender it again at DisplayComments component
+    }, 300);
     setTimeout(() => {
       dispatch(refreshComments(false));
     }, 1000);

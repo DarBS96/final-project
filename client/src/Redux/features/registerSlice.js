@@ -29,7 +29,7 @@ const registerReducer = createSlice({
       state.token = action.payload;
     },
     isLogin: (state, action) => {
-      state.isLogin = true;
+      state.isLogin = action.payload;
     },
   },
 });

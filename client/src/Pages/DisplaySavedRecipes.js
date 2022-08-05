@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Recipe from "../components/recipes/Recipe";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/savedRecipes`;
 
 function DisplaySavedRecipes(props) {
   const token = useSelector((store) => store.registerReducer.token);
-  let { recipe_id } = useParams();
-  console.log(recipe_id);
+
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  let { feeling_id } = useParams();
   useEffect(() => {
     const getSavedRecipes = async () => {
       const data = await axios({
@@ -15,17 +17,25 @@ function DisplaySavedRecipes(props) {
         url: `${URL}`,
         data: {
           saved: true,
-          recipe_id,
+          feeling_id,
         },
         headers: {
           Authorization: token,
         },
       });
-      console.log(data);
+      setSavedRecipes(data.data.filteredSavedRecipes);
     };
     getSavedRecipes();
-  });
-  return <div></div>;
+  }, [feeling_id]);
+  return (
+    <div>
+      <div>
+        {savedRecipes.map((recipe, idx) => {
+          return <Recipe key={idx} recipe={recipe} />;
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default DisplaySavedRecipes;

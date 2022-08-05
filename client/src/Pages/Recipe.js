@@ -46,8 +46,8 @@ function Recipe(props) {
       <p>{recipe_author}</p>
       <h2>Write at:</h2>
       <p>{date}</p>
-      <DisplayComments />
       <AddComment recipe_id={recipe_id} />
+      <DisplayComments />
     </div>
   );
 }

@@ -8,6 +8,7 @@ const initialState = {
   isLoading: true,
   rating: 0,
   views: 0,
+  customRecipes: [],
 };
 
 export const getRecipes = createAsyncThunk(
@@ -47,13 +48,16 @@ const recipesReducer = createSlice({
     ratingAvg: (state, action) => {
       state.rating = action.payload;
     },
+    addRecipe: (state, action) => {
+      state.customRecipes = action.payload.customRecipe;
+      console.log(current(state));
+    },
   },
   extraReducers: {
     [getRecipes.pending]: (state) => {
       state.isLoading = true;
     },
     [getRecipes.fulfilled]: (state, action) => {
-      //The payload in the action is the data that we returning from getFeelings func
       state.isLoading = false;
       state.recipes = action.payload;
     },
@@ -69,6 +73,7 @@ export const {
   recipeViews,
   showAllComments,
   refreshComments,
+  addRecipe,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

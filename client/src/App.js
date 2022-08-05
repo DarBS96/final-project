@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Welcome from "./Pages/Welcome";
 import Recipes from "./Pages/Recipes";
 import DisplaySavedRecipes from "./Pages/DisplaySavedRecipes";
+import AddRecipe from "./Pages/AddRecipe";
 import Recipe from "./Pages/Recipe";
 import VerifyToken from "./components/VerifyToken";
 import { useSelector } from "react-redux";
@@ -38,6 +39,14 @@ function App() {
             }
           />
           <Route
+            path="/addCustomRecipe"
+            element={
+              <VerifyToken>
+                <AddRecipe />
+              </VerifyToken>
+            }
+          />
+          <Route
             path="/chosenRecipe"
             element={
               <VerifyToken>
@@ -46,7 +55,7 @@ function App() {
             }
           />
           <Route
-            path="/savedRecipes/:recipe_id"
+            path="/savedRecipes/:feeling_id"
             element={
               <VerifyToken>
                 <DisplaySavedRecipes />

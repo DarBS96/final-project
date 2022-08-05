@@ -7,7 +7,6 @@ import { saveToken, isLogin } from "../Redux/features/registerSlice";
 import Button from "react-bootstrap/Button";
 
 function Login(props) {
-  // const { userRegisterInfo } = useSelector((store) => store.registerReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExist, setIsExist] = useState({
@@ -25,7 +24,6 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // e.preventDefault();
     try {
       //Send user login info to DB
       const data = await axios({
@@ -36,7 +34,7 @@ function Login(props) {
       //Getting the token from the server
       const { token } = data.data;
       dispatch(saveToken(token));
-      dispatch(isLogin());
+      dispatch(isLogin(true));
       navigate("/home");
     } catch (err) {
       console.log(err);
