@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import "../../css/starRating.css";
+import "../../.././css/starRating.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ratingAvg } from "../../Redux/features/recipesSlice";
+import { ratingAvg } from "../../../Redux/features/recipesSlice";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;

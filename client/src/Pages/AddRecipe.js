@@ -1,6 +1,8 @@
 import React from "react";
-import InputAddRecipe from "../components/recipes/InputAddRecipe";
+import InputAddRecipe from "../components/recipes/Inputs/Input";
 import axios from "axios";
+import DisplayInputGroup from "../components/recipes/Inputs/DisplayInputGroup";
+import Input from "../components/recipes/Inputs/Input";
 const feeling = "romantic";
 
 function AddRecipe(props) {
@@ -21,7 +23,11 @@ function AddRecipe(props) {
     <div>
       <h3>Add your {feeling} own recipe!</h3>
       <form>
-        <InputAddRecipe
+        <DisplayInputGroup />
+        <Input />
+        <Input />
+        <Input />
+        {/* <InputAddRecipe
           type={"text"}
           label={"Title"}
           id={"title"}
@@ -29,7 +35,7 @@ function AddRecipe(props) {
         />
         <InputAddRecipe
           type={"text"}
-          label={"Ingredients"}
+          label={"Ingredient name"}
           id={"ingredients"}
           placeholder={"flour"}
         />
@@ -37,12 +43,12 @@ function AddRecipe(props) {
           type={"number"}
           label={"Amount"}
           id={"grams"}
-          placeholder={"100 grams"}
+          placeholder={"amount"}
         />
         <InputAddRecipe
           type={"number"}
           id={"units"}
-          placeholder={"units"}
+          placeholder={"unit"}
           isButton={true}
         />
 
@@ -71,7 +77,8 @@ function AddRecipe(props) {
           label={"Author"}
           id={"author"}
           placeholder={"Johanna Cohen"}
-        />
+        /> */}
+        <br />
         <button type="submit">Add recipe!</button>
       </form>
       {/* <form onSubmit={handleSubmit}>

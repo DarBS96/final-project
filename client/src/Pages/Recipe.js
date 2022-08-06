@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import StarRating from "../components/recipes/StarRating";
+import StarRating from "../components/recipes/Inputs/StarRating";
 import AddComment from "../components/recipes/comments/AddComment";
 import { useEffect, useState } from "react";
 import DisplayComments from "../components//allToDisplay/DisplayComments";
