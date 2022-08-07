@@ -101,3 +101,26 @@ export const displayFilteredRecipesByFeelings = async (req, res) => {
     res.send({ filteredSavedRecipes, recipeAlreadySaved });
   });
 };
+
+export const addingCustomRecipe = (req, res, next) => {
+  const { title, recipeImg, description, author, ingredients, preparation } =
+    req.body.customRecipe;
+  const { feeling_id } = req.body;
+  const token = req.headers.authorization;
+  if (token == null) return res.status(401).send("Must send a token");
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).send("Token no longer valid");
+    await pushUserInfoToDB("recipes", {
+      user_id: decoded.userId,
+      title,
+      img: recipeImg,
+      description,
+      author,
+      ingredients,
+      preparation,
+      fk_feeling_id: feeling_id,
+      date: new Date().toString(),
+    });
+    res.send("successfully created");
+  });
+};

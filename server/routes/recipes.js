@@ -12,6 +12,7 @@ import {
   getAllComments,
   displayFilteredRecipesByFeelings,
   saveRecipe,
+  addingCustomRecipe,
 } from "../controllers/recipes.js";
 import { authenticateToken } from "../middleware/auth.js";
 
@@ -24,5 +25,6 @@ routerRecipes.post("/recipes/comment", addingComment);
 routerRecipes.post("/recipes/showAllComments", getAllComments);
 routerRecipes.post("/recipes/savedRecipes", displayFilteredRecipesByFeelings);
 routerRecipes.post("/recipes/saveRecipe", saveRecipe);
+routerRecipes.post("/recipes/addingCustomRecipe", addingCustomRecipe);
 
 export default routerRecipes;
