@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { selectedFeeling } from "../../Redux/features/feelingSlice";
+import {
+  selectedFeeling,
+  feelingName,
+} from "../../Redux/features/feelingSlice";
 import "../../css/feelings/feeling.css";
 
 function Feeling({ feeling }) {
@@ -9,7 +12,8 @@ function Feeling({ feeling }) {
 
   const handleClick = (e) => {
     dispatch(selectedFeeling(e.target.id));
-    navigate("/recipes");
+    dispatch(feelingName(e.target.textContent));
+    navigate(`/recipes`);
   };
   return (
     // <div>

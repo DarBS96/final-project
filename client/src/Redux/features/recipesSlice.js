@@ -8,7 +8,10 @@ const initialState = {
   isLoading: true,
   rating: 0,
   views: 0,
-  customRecipes: [],
+  customRecipe: {
+    ingredients: [],
+    preparation: [],
+  },
 };
 
 export const getRecipes = createAsyncThunk(
@@ -48,9 +51,20 @@ const recipesReducer = createSlice({
     ratingAvg: (state, action) => {
       state.rating = action.payload;
     },
-    addRecipe: (state, action) => {
-      state.customRecipes = action.payload.customRecipe;
-      console.log(current(state));
+    addRecipeFields: (state, action) => {
+      for (let [field, value] of Object.entries(action.payload.fields)) {
+        state.customRecipe[field] = value;
+      }
+    },
+    addIngredients: (state, action) => {
+      state.customRecipe.ingredients = state.customRecipe.ingredients.concat(
+        action.payload.ingredients
+      );
+    },
+    addPreparation: (state, action) => {
+      state.customRecipe.preparation = state.customRecipe.preparation.concat(
+        action.payload.preparation
+      );
     },
   },
   extraReducers: {
@@ -73,7 +87,9 @@ export const {
   recipeViews,
   showAllComments,
   refreshComments,
-  addRecipe,
+  addRecipeFields,
+  addIngredients,
+  addPreparation,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

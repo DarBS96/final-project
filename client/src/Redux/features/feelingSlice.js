@@ -9,6 +9,7 @@ const initialState = {
   feelings: [],
   isLoading: true,
   selectedFeeling: "",
+  feelingName: "",
 };
 
 export const getFeelings = createAsyncThunk(
@@ -38,6 +39,9 @@ const feelingReducer = createSlice({
     selectedFeeling: (state, action) => {
       state.selectedFeeling = action.payload;
     },
+    feelingName: (state, action) => {
+      state.feelingName = action.payload;
+    },
   },
   extraReducers: {
     [getFeelings.pending]: (state) => {
@@ -54,6 +58,6 @@ const feelingReducer = createSlice({
   },
 });
 
-export const { selectedFeeling } = feelingReducer.actions;
+export const { selectedFeeling, feelingName } = feelingReducer.actions;
 
 export default feelingReducer.reducer;

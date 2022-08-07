@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Recipe from "../components/recipes/Recipe";
@@ -7,7 +7,7 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/savedRecipes`;
 
 function DisplaySavedRecipes(props) {
   const token = useSelector((store) => store.registerReducer.token);
-
+  const dispatch = useDispatch();
   const [savedRecipes, setSavedRecipes] = useState([]);
   let { feeling_id } = useParams();
   useEffect(() => {
