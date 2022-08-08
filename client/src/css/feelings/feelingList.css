@@ -12,9 +12,9 @@ svg {
     margin-top: 100px;
 }
 
-.emotion-container {
-    cursor: pointer;
-}
+
+/* .emotion-container {
+} */
 
 svg.happy .face {
     -webkit-animation: upAndDown 0.8s ease infinite;
@@ -26,6 +26,11 @@ svg.happy .face {
     font-family: "Dosis", sans-serif;
     font-weight: bold;
     font-size: 25px;
+    cursor: pointer;
+}
+
+.emotion-description:hover {
+    font-size: 50px;
 }
 
 .feelingList-title {

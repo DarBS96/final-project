@@ -16,7 +16,7 @@ function RecipesList(props) {
   }, []);
   return (
     <div>
-      <Link to={`/addCustomRecipe`}>Add your own recipe!</Link>
+      {/* <Link to={`/addCustomRecipe`}>Add your own recipe!</Link> */}
       {recipes.map((recipe) => {
         return <Recipe recipe={recipe} key={recipe.recipe_id} />;
       })}

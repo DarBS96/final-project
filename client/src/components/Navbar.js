@@ -40,9 +40,6 @@ function NavbarComp() {
                 <Nav.Link as={Link} to={"/savedRecipes/5"}>
                   Tense
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/6"}>
-                  Creative
-                </Nav.Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

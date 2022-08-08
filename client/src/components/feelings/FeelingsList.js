@@ -27,13 +27,15 @@ function FeelingsList(props) {
     <div>
       <h1 className="feelingList-title">How you feeling today?</h1>
       <main className="emotions-container">
-        <div
-          id={Number(feelings[2]?.feeling_id)}
-          name={feelings[2]?.feeling}
-          onClick={handleClick}
-          className="emotion-container"
-        >
-          <p className="emotion-description">Lonely</p>
+        <div className="emotion-container">
+          <p
+            id={Number(feelings[2]?.feeling_id)}
+            name={feelings[2]?.feeling}
+            onClick={handleClick}
+            className="emotion-description"
+          >
+            Lonely
+          </p>
           <svg
             className="sad"
             width="44px"
@@ -84,13 +86,15 @@ function FeelingsList(props) {
             </g>
           </svg>
         </div>
-        <div
-          className="emotion-container"
-          id={Number(feelings[3]?.feeling_id)}
-          name={feelings[3]?.feeling}
-          onClick={handleClick}
-        >
-          <p className="emotion-description">Tense</p>
+        <div className="emotion-container">
+          <p
+            id={Number(feelings[3]?.feeling_id)}
+            name={feelings[3]?.feeling}
+            onClick={handleClick}
+            className="emotion-description"
+          >
+            Tense
+          </p>
           <svg
             class="neutral"
             width="44px"
@@ -128,13 +132,15 @@ function FeelingsList(props) {
             </g>
           </svg>
         </div>
-        <div
-          className="emotion-container"
-          id={Number(feelings[0]?.feeling_id)}
-          name={feelings[0]?.feeling}
-          onClick={handleClick}
-        >
-          <p className="emotion-description">Romantic</p>
+        <div className="emotion-container">
+          <p
+            id={Number(feelings[0]?.feeling_id)}
+            name={feelings[0]?.feeling}
+            onClick={handleClick}
+            className="emotion-description"
+          >
+            Romantic
+          </p>
           <svg
             class="fine"
             width="44px"
@@ -196,13 +202,15 @@ function FeelingsList(props) {
             </g>
           </svg>
         </div>
-        <div
-          className="emotion-container"
-          id={Number(feelings[1]?.feeling_id)}
-          name={feelings[1]?.feeling}
-          onClick={handleClick}
-        >
-          <p className="emotion-description">Tipsy</p>
+        <div className="emotion-container">
+          <p
+            id={Number(feelings[1]?.feeling_id)}
+            name={feelings[1]?.feeling}
+            onClick={handleClick}
+            className="emotion-description"
+          >
+            Tipsy
+          </p>
           <svg
             class="happy"
             width="44px"
@@ -220,7 +228,7 @@ function FeelingsList(props) {
               fill-rule="evenodd"
               transform="translate(0, 0)"
             >
-              <circle id="Body" fill="#248C37" cx="22" cy="22" r="22"></circle>
+              <circle id="Body" fill="#248C37" cx="22" cy="22" r="22"></circle>/
             </g>
             <g class="scaleFace">
               <g class="face">

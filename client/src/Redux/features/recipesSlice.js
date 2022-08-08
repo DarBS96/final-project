@@ -19,7 +19,6 @@ export const getRecipes = createAsyncThunk(
   async (name, thunkAPI) => {
     try {
       const id = thunkAPI.getState().feelingSlice.selectedFeeling;
-      console.log(id);
       const token = thunkAPI.getState().registerReducer.token;
       //In thunkAPI we have bunch of methods especially access to any state in the store
       const data = await axios({
