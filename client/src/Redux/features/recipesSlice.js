@@ -19,6 +19,7 @@ export const getRecipes = createAsyncThunk(
   async (name, thunkAPI) => {
     try {
       const id = thunkAPI.getState().feelingSlice.selectedFeeling;
+      console.log(id);
       const token = thunkAPI.getState().registerReducer.token;
       //In thunkAPI we have bunch of methods especially access to any state in the store
       const data = await axios({
@@ -60,11 +61,23 @@ const recipesReducer = createSlice({
       state.customRecipe.ingredients = state.customRecipe.ingredients.concat(
         action.payload.ingredients
       );
+      console.log(current(state));
     },
     addPreparation: (state, action) => {
       state.customRecipe.preparation = state.customRecipe.preparation.concat(
         action.payload.preparation
       );
+    },
+    filteredIngredients: (state, action) => {
+      state.customRecipe.ingredients = action.payload;
+    },
+    filteredMethods: (state, action) => {
+      state.customRecipe.preparation = action.payload;
+    },
+
+    restartIngredientsAndMethods: (state, action) => {
+      state.customRecipe.preparation = [];
+      state.customRecipe.ingredients = [];
     },
   },
   extraReducers: {
@@ -90,6 +103,10 @@ export const {
   addRecipeFields,
   addIngredients,
   addPreparation,
+  saveChanges,
+  filteredIngredients,
+  filteredMethods,
+  restartIngredientsAndMethods,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

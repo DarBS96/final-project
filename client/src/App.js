@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Welcome from "./Pages/Welcome";
 import Recipes from "./Pages/Recipes";
 import DisplaySavedRecipes from "./Pages/DisplaySavedRecipes";
+import MyComments from "./Pages/MyComments";
 import AddRecipe from "./Pages/AddRecipe";
 import Recipe from "./Pages/Recipe";
 import VerifyToken from "./components/VerifyToken";
@@ -59,6 +60,14 @@ function App() {
             element={
               <VerifyToken>
                 <DisplaySavedRecipes />
+              </VerifyToken>
+            }
+          />
+          <Route
+            path="/myComments"
+            element={
+              <VerifyToken>
+                <MyComments />
               </VerifyToken>
             }
           />

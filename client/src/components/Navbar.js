@@ -24,7 +24,10 @@ function NavbarComp() {
               <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
-              <NavDropdown title="My list" id="basic-nav-dropdown">
+              <Nav.Link as={Link} to={"/myComments"}>
+                My comments
+              </Nav.Link>
+              <NavDropdown title="Favorites" id="basic-nav-dropdown">
                 <Nav.Link as={Link} to={`/savedRecipes/1`}>
                   Romantic
                 </Nav.Link>

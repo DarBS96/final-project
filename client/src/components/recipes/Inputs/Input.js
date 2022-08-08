@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 
-function Input({ label, type, id, placeholder, onChange }) {
+function Input({ label, type, id, placeholder, onChange, isRequired, accept }) {
   return (
     <div>
       <Form.Group className="mb-3 container">
@@ -12,8 +12,10 @@ function Input({ label, type, id, placeholder, onChange }) {
           type={type}
           placeholder={placeholder}
           name={id}
-          required
+          // required
           id={id}
+          autoComplete="off"
+          accept={accept}
         />
       </Form.Group>
     </div>

@@ -4,14 +4,17 @@ import { useDispatch } from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { addPreparation } from "../../../Redux/features/recipesSlice";
+import { v4 as uuid } from "uuid";
+
 function PreparationInput(props) {
+  const id = uuid();
   const initialState = {
+    id,
     number: "",
     method: "",
   };
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
-  const [preparation, setIngredients] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +22,10 @@ function PreparationInput(props) {
       ...values,
       [name]: value,
     });
-    setIngredients([values]);
   };
 
   const handleClick = () => {
-    console.log(preparation);
-    dispatch(addPreparation({ preparation }));
+    dispatch(addPreparation({ preparation: [values] }));
     setValues(initialState);
   };
 
@@ -34,18 +35,18 @@ function PreparationInput(props) {
         <InputGroup.Text>Preparation</InputGroup.Text>
         <Form.Control
           type="number"
-          // aria-label="Last name"
           placeholder="Number"
           onChange={handleChange}
           name="number"
           value={values.number}
+          autoComplete="off"
         />
         <Form.Control
-          // aria-label="Last name"
           placeholder="Method"
           onChange={handleChange}
           name="method"
           value={values.method}
+          autoComplete="off"
         />
         <Button onClick={handleClick}>+</Button>
       </InputGroup>
