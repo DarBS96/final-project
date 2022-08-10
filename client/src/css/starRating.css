@@ -12,3 +12,22 @@
 .off {
     color: #ccc;
 }
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    /* justify-content: center; */
+}
+
+.stars-rating {}
+
+.votes {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.horizontal {
+    width: 45%;
+    height: 0;
+}

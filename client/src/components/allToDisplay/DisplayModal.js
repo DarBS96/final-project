@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
 // import {
 //   filteredIngredients,
 //   filteredMethods,
@@ -9,6 +10,8 @@ import Modal from "react-bootstrap/Modal";
 
 function DisplayModal() {
   const [show, setShow] = useState(true);
+  const { isSaved } = useSelector((store) => store.recipesSlice);
+  console.log(isSaved);
   // const dispatch = useDispatch();
   const handleClose = () => {
     setShow(false);
@@ -21,16 +24,19 @@ function DisplayModal() {
       </Button> */}
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to add this recipe?</Modal.Body>
+        <Modal.Header closeButton></Modal.Header>
+        {!isSaved ? (
+          <Modal.Body style={{ fontSize: "30px" }}>
+            Successfully saved!
+          </Modal.Body>
+        ) : (
+          <Modal.Body style={{ fontSize: "30px" }}>
+            Already saved! {<br />}you can watch it in your favorites
+          </Modal.Body>
+        )}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&display=swap");
+
 /* html {
     background: #faf7f2;
     background-image: url(https://s3.postimg.org/s1n3ji1ur/paper_fibers_2_X.png);
@@ -7,11 +9,12 @@
     font-weight: 400;
 } */
 
-*,
+
+/* *,
 *:before,
 *:after {
     box-sizing: inherit;
-}
+} */
 
 
 /* .u-clearfix:before,
@@ -20,12 +23,17 @@
     display: table;
 } */
 
+.recipes-container {
+    margin-top: 50px;
+    height: 100vh;
+}
+
 .u-clearfix {
-    *zoom: 1;
+    /* *zoom: 1; */
     display: flex;
     flex-direction: row;
-    row-gap: 10px;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
 }
 
 .subtle {
@@ -48,25 +56,11 @@
 }
 
 .card-body {
-    height: 250px;
-    width: 180px;
+    height: 180px;
+    width: 150px;
+    padding: 0 !important;
     display: flex;
     flex-direction: column;
-}
-
-.card-number {
-    margin-top: 15px;
-}
-
-.card-circle {
-    border: 1px solid #aaa;
-    border-radius: 50%;
-    display: inline-block;
-    line-height: 22px;
-    font-size: 12px;
-    height: 25px;
-    text-align: center;
-    width: 25px;
 }
 
 .card-author {
@@ -77,16 +71,20 @@
 }
 
 .card-title {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
     font-size: 30px;
     font-weight: 300;
     line-height: 60px;
-    margin: 10px 0;
+    margin: 5px 0;
+    letter-spacing: 4px;
 }
 
 .card-description {
     /* font-weight: 300; */
     /* line-height: 22px; */
+    /* padding-bottom: 25px; */
+    margin: 0;
 }
 
 .card-read {
@@ -96,23 +94,12 @@
     letter-spacing: 6px;
     text-transform: uppercase;
     text-align: center;
-}
-
-
-/* .card-read:after {
-    background-color: #b8bddd;
-     height: 1px; 
-     top: 9px;
-    width: 75%; 
-} */
-
-.card-tag {
-    float: right;
-    margin: 5px 0 0;
+    margin-top: auto;
 }
 
 .card-media {
-    height: 250px;
+    height: 180px;
+    width: 125px;
 }
 
 .card-shadow {
@@ -121,4 +108,10 @@
     margin: auto;
     width: 80%;
     /* z-index: -1; */
+}
+
+.link-adding-customRecipe {
+    margin-top: 50px;
+    background-color: pink;
+    color: black;
 }

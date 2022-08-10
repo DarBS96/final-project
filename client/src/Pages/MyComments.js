@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import ".././css/myComments.css";
+import Comment from "../components/recipes/comments/Comment";
+import { BsFillPencilFill, BsTrash } from "react-icons/bs";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/myComments`;
 
 function MyComments(props) {
@@ -22,17 +25,25 @@ function MyComments(props) {
     getMyComments();
   }, []);
   return (
-    <div>
-      <h1>Edit my comments</h1>
+    // <div>
+    <div className="my-comments-container">
+      <h1 className="my-comments-title">Edit my comments</h1>
       {myComments.map((comment, idx) => {
         return (
-          <div>
-            <h1> {comment.comment_title}</h1>
-            <p>{comment.comment_body}</p>
+          <div className="my-comments">
+            <div>
+              <BsFillPencilFill className="edit-comment" />
+              <BsTrash className="delete-comment" />
+
+              <div className="comment-component">
+                <Comment key={idx} comment={comment} />
+              </div>
+            </div>
           </div>
         );
       })}
     </div>
+    // </div>
   );
 }
 

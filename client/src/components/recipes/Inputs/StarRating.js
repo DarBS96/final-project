@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "../../.././css/starRating.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ratingAvg } from "../../../Redux/features/recipesSlice";
+import { ratingAvg, setVotes } from "../../../Redux/features/recipesSlice";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
@@ -10,8 +10,9 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
 const StarRating = ({ recipe_id }) => {
   const dispatch = useDispatch();
   const token = useSelector((store) => store.registerReducer.token);
-  const ratingsAvg = useSelector((store) => store.recipesSlice.rating);
+  const { ratingsAvg, votes } = useSelector((store) => store.recipesSlice);
   const [value, setValue] = useState(ratingsAvg);
+  // const [currVotes, setVotes] = useState("");
   const [ratingIsExist, setRatingIsExist] = useState(false);
   useEffect(() => {
     const getRatingAvg = async () => {
@@ -25,8 +26,12 @@ const StarRating = ({ recipe_id }) => {
           Authorization: token,
         },
       });
+      console.log(data.data);
 
       dispatch(ratingAvg(data.data.ratingAvg));
+      console.log(ratingsAvg);
+
+      dispatch(setVotes(data.data.votes));
       //Check if user can rate
       if (
         // if there is no user
@@ -59,19 +64,28 @@ const StarRating = ({ recipe_id }) => {
     setValue(newValue);
   };
   return (
+    // {Number(ratingsAvg).toFixed(1)} // *Average Number"
     <>
-      {ratingsAvg && <div>Average {Number(ratingsAvg).toFixed(1)}</div>}
       {!ratingIsExist ? (
-        <>
+        <div className="rating-container">
           <Rating
             name="simple-controlled"
             value={Number(value)}
             onChange={(event, newValue) => handleChange(event, newValue)}
           />
-        </>
+          {ratingsAvg && <div className="votes">{`(${votes})`}</div>}
+        </div>
       ) : (
-        <div>
-          <Rating name="read-only" value={Number(value)} readOnly />
+        <div className="rating-container">
+          <Rating
+            size="medium"
+            className="stars-rating"
+            name="read-only"
+            value={Number(value)}
+            readOnly
+            precision={0.5}
+          />
+          {ratingsAvg && <div className="votes">{`(${votes})`}</div>}
         </div>
       )}
     </>

@@ -1,0 +1,23 @@
+.my-comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.my-comments-title {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.edit-comment {
+    height: 30px;
+    width: 30px;
+}
+
+.delete-comment {
+    height: 30px;
+    width: 30px;
+}
+
+.comment-component {}

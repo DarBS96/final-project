@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { BsHeart } from "react-icons/bs";
+import DisplayModal from "../allToDisplay/DisplayModal";
+import { isRecipeSaved } from "../../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/saveRecipe`;
 
 function SaveRecipe({ recipe_id }) {
@@ -10,6 +13,8 @@ function SaveRecipe({ recipe_id }) {
   );
   const ref = useRef(null);
   const [isSaved, setIsSaved] = useState(false);
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const recipeIsSaved = async () => {
@@ -26,9 +31,13 @@ function SaveRecipe({ recipe_id }) {
         },
       });
 
-      if (data.data.recipeAlreadySaved) setIsSaved(true);
+      if (data.data.recipeAlreadySaved) {
+        setIsSaved(true);
+        //update the satate so the Modal will display appropriate response
+        dispatch(isRecipeSaved(true));
+      }
     };
-    recipeIsSaved();
+    recipeIsSaved(showModal);
 
     const btnElement = ref.current;
     if (isSaved)
@@ -38,6 +47,8 @@ function SaveRecipe({ recipe_id }) {
   }, []);
 
   const handleClick = async (e) => {
+    setShowModal(true);
+
     const data = await axios({
       method: "POST",
       url: `${URL}`,
@@ -52,11 +63,10 @@ function SaveRecipe({ recipe_id }) {
   };
   return (
     <div>
-      <div>
-        <button ref={ref} onClick={handleClick}>
-          Save
-        </button>
+      <div onClick={handleClick} ref={ref} className="wrapped-heart">
+        <BsHeart className="heart-save" />
       </div>
+      {showModal && <DisplayModal />}
     </div>
   );
 }

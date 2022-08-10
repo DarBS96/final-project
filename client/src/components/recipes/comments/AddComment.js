@@ -50,31 +50,36 @@ function Comment({ recipe_id }) {
     //Show all comments
   };
   return (
-    <div className="comment-container">
-      <h3>Add a comment to the recipe!</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="comment-title"> title</label> <br />
-        <input
-          required
-          value={values.title}
-          id="comment-title"
-          type="text"
-          name="title"
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor="comment-content">content</label> <br />
-        <input
-          required
-          value={values.content}
-          id="comment-content"
-          type="text"
-          name="content"
-          onChange={handleChange}
-        />
-        <br />
-        {/* When user click the button add dateNow func to the date */}
-        <button>Add!</button>
+    <div class="comment-form">
+      <form onSubmit={handleSubmit} className="form" name="form">
+        <div class="form-row">
+          <textarea
+            className="input"
+            placeholder="Add comment..."
+            required
+            value={values.title}
+            id="comment-title"
+            name="title"
+            onChange={handleChange}
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <input
+            required
+            value={values.content}
+            id="comment-content"
+            type="text"
+            name="content"
+            onChange={handleChange}
+            className="input"
+            placeholder="name"
+          />
+        </div>
+
+        <div class="form-row">
+          <input type="submit" value="Add Comment" />
+        </div>
       </form>
     </div>
   );

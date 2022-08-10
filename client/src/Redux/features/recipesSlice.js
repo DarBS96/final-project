@@ -6,12 +6,14 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes`;
 const initialState = {
   recipes: [],
   isLoading: true,
-  rating: 0,
+  ratingsAvg: 0,
   views: 0,
+  votes: 0,
   customRecipe: {
     ingredients: [],
     preparation: [],
   },
+  isSaved: false,
 };
 
 export const getRecipes = createAsyncThunk(
@@ -49,7 +51,11 @@ const recipesReducer = createSlice({
       state.views = action.payload;
     },
     ratingAvg: (state, action) => {
-      state.rating = action.payload;
+      console.log(action);
+      state.ratingsAvg = action.payload;
+    },
+    setVotes: (state, action) => {
+      state.votes = action.payload;
     },
     addRecipeFields: (state, action) => {
       for (let [field, value] of Object.entries(action.payload.fields)) {
@@ -77,6 +83,9 @@ const recipesReducer = createSlice({
     restartIngredientsAndMethods: (state, action) => {
       state.customRecipe.preparation = [];
       state.customRecipe.ingredients = [];
+    },
+    isRecipeSaved: (state, action) => {
+      state.isSaved = action.payload;
     },
   },
   extraReducers: {
@@ -106,6 +115,8 @@ export const {
   filteredIngredients,
   filteredMethods,
   restartIngredientsAndMethods,
+  setVotes,
+  isRecipeSaved,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

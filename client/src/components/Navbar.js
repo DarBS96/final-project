@@ -15,8 +15,8 @@ function NavbarComp() {
   };
   return (
     <div>
-      <Navbar bg="light" expand="lg">
-        <Container>
+      <Navbar bg="light" expand="lg" collapseOnSelect="true">
+        <Container className="navbar-container">
           <Navbar.Brand className="navbar-brand">Feeleat!</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -28,16 +28,16 @@ function NavbarComp() {
                 My comments
               </Nav.Link>
               <NavDropdown title="Favorites" id="basic-nav-dropdown">
-                <Nav.Link as={Link} to={`/savedRecipes/1`}>
+                <Nav.Link className="nav-link" as={Link} to={`/savedRecipes/1`}>
                   Romantic
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/3"}>
+                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/3"}>
                   Tipsy
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/4"}>
+                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/4"}>
                   Lonely
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/savedRecipes/5"}>
+                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/5"}>
                   Tense
                 </Nav.Link>
               </NavDropdown>

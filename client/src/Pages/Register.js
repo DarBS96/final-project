@@ -100,7 +100,7 @@ function Register(props) {
             required
           />
         </div>
-        <Button type="submit" className="btn-register" variant="dark ">
+        <Button type="submit" className="btn" variant="light ">
           Register
         </Button>
       </form>

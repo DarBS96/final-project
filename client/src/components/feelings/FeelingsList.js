@@ -29,7 +29,7 @@ function FeelingsList(props) {
       <main className="emotions-container">
         <div className="emotion-container">
           <p
-            id={Number(feelings[2]?.feeling_id)}
+            id={feelings[2]?.feeling_id}
             name={feelings[2]?.feeling}
             onClick={handleClick}
             className="emotion-description"
@@ -53,20 +53,20 @@ function FeelingsList(props) {
               fillRule="evenodd"
               transform="translate(0, 0)"
             >
-              <circle id="body" fill="#E23D18" cx="22" cy="22" r="22"></circle>
+              <circle id="body" fill="#F6E7D8" cx="22" cy="22" r="22"></circle>
               <g id="face" transform="translate(13.000000, 20.000000)">
-                <g class="face">
+                <g className="face">
                   <path
                     d="M7,4 C7,5.1045695 7.8954305,6 9,6 C10.1045695,6 11,5.1045695 11,4"
-                    class="mouth"
+                    className="mouth"
                     stroke="#2C0E0F"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                     transform="translate(9.000000, 5.000000) rotate(-180.000000) translate(-9.000000, -5.000000) "
                   ></path>
                   <ellipse
-                    class="right-eye"
+                    className="right-eye"
                     fill="#2C0E0F"
                     cx="16.0941176"
                     cy="1.75609756"
@@ -74,7 +74,7 @@ function FeelingsList(props) {
                     ry="1.75609756"
                   ></ellipse>
                   <ellipse
-                    class="left-eye"
+                    className="left-eye"
                     fill="#2C0E0F"
                     cx="1.90588235"
                     cy="1.75609756"
@@ -88,7 +88,7 @@ function FeelingsList(props) {
         </div>
         <div className="emotion-container">
           <p
-            id={Number(feelings[3]?.feeling_id)}
+            id={feelings[3]?.feeling_id}
             name={feelings[3]?.feeling}
             onClick={handleClick}
             className="emotion-description"
@@ -96,7 +96,7 @@ function FeelingsList(props) {
             Tense
           </p>
           <svg
-            class="neutral"
+            className="neutral"
             width="44px"
             height="44px"
             viewBox="0 0 44 44"
@@ -105,23 +105,23 @@ function FeelingsList(props) {
             xmlnsXlink="http://www.w3.org/1999/xlink"
           >
             <g>
-              <circle id="body" fill="#F9AC1B" cx="22" cy="22" r="22"></circle>
-              <g class="face">
+              <circle id="body" fill="#F68989" cx="22" cy="22" r="22"></circle>
+              <g className="face">
                 <g transform="translate(13.000000, 20.000000)" fill="#2C0E0F">
-                  <g class="mouth">
+                  <g className="mouth">
                     <g transform="translate(9, 5)">
                       <rect x="-2" y="0" width="4" height="2" rx="2"></rect>
                     </g>
                   </g>
                   <ellipse
-                    class="right-eye"
+                    className="right-eye"
                     cx="16.0941176"
                     cy="1.75"
                     rx="1.90588235"
                     ry="1.75"
                   ></ellipse>
                   <ellipse
-                    class="left-eye"
+                    className="left-eye"
                     cx="1.90588235"
                     cy="1.75"
                     rx="1.90588235"
@@ -134,7 +134,7 @@ function FeelingsList(props) {
         </div>
         <div className="emotion-container">
           <p
-            id={Number(feelings[0]?.feeling_id)}
+            id={feelings[0]?.feeling_id}
             name={feelings[0]?.feeling}
             onClick={handleClick}
             className="emotion-description"
@@ -142,7 +142,7 @@ function FeelingsList(props) {
             Romantic
           </p>
           <svg
-            class="fine"
+            className="fine"
             width="44px"
             height="44px"
             viewBox="0 0 44 44"
@@ -153,25 +153,28 @@ function FeelingsList(props) {
             <g
               id="fine-emotion"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
               fillRule="evenodd"
             >
               <g id="fine">
                 <circle
                   id="body"
-                  fill="#1988E3"
+                  fill="#C65D7B"
                   cx="22"
                   cy="22"
                   r="22"
                 ></circle>
-                <g class="matrix" transform="translate(22.000000, 32.000000)">
-                  <g class="face-container">
-                    <g class="face" transform="translate(-9, -12)">
-                      <g class="face-upAndDown">
-                        <g class="eyes">
+                <g
+                  className="matrix"
+                  transform="translate(22.000000, 32.000000)"
+                >
+                  <g className="face-container">
+                    <g className="face" transform="translate(-9, -12)">
+                      <g className="face-upAndDown">
+                        <g className="eyes">
                           <ellipse
-                            class="right-eye"
+                            className="right-eye"
                             fill="#2C0E0F"
                             cx="16.0941176"
                             cy="1.75609756"
@@ -179,7 +182,7 @@ function FeelingsList(props) {
                             ry="1.75609756"
                           ></ellipse>
                           <ellipse
-                            class="left-eye"
+                            className="left-eye"
                             fill="#2C0E0F"
                             cx="1.90588235"
                             cy="1.75609756"
@@ -191,7 +194,7 @@ function FeelingsList(props) {
                           d="M6.18823529,4.90499997 C6.18823529,5.95249999 7.48721095,7 9.08957864,7 C10.6919463,7 11.990922,5.95249999 11.990922,4.90499997"
                           id="mouth"
                           stroke="#2C0E0F"
-                          stroke-linecap="round"
+                          strokeLinecap="round"
                           strokeLinejoin="round"
                         ></path>
                       </g>
@@ -204,7 +207,7 @@ function FeelingsList(props) {
         </div>
         <div className="emotion-container">
           <p
-            id={Number(feelings[1]?.feeling_id)}
+            id={feelings[1]?.feeling_id}
             name={feelings[1]?.feeling}
             onClick={handleClick}
             className="emotion-description"
@@ -212,7 +215,7 @@ function FeelingsList(props) {
             Tipsy
           </p>
           <svg
-            class="happy"
+            className="happy"
             width="44px"
             height="44px"
             viewBox="0 0 44 44"
@@ -223,15 +226,15 @@ function FeelingsList(props) {
             <g
               id="Happy"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
-              fill-rule="evenodd"
+              fillRule="evenodd"
               transform="translate(0, 0)"
             >
-              <circle id="Body" fill="#248C37" cx="22" cy="22" r="22"></circle>/
+              <circle id="Body" fill="#874356" cx="22" cy="22" r="22"></circle>/
             </g>
-            <g class="scaleFace">
-              <g class="face">
+            <g className="scaleFace">
+              <g className="face">
                 <ellipse
                   id="Eye-right"
                   fill="#2C0E0F"

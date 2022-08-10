@@ -43,8 +43,7 @@ function DisplayComments(props) {
   return (
     <>
       {isComment && (
-        <div>
-          <h3>Comments</h3>
+        <div className="comments-container">
           {comments?.map((comment, idx) => {
             return <Comment key={idx} comment={comment} username={username} />;
           })}

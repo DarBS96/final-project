@@ -10,13 +10,17 @@ import Recipe from "./Recipe";
 function RecipesList(props) {
   const dispatch = useDispatch();
   const { recipes } = useSelector((store) => store.recipesSlice);
+  const { feelingName } = useSelector((store) => store.feelingSlice);
 
   useEffect(() => {
     dispatch(getRecipes());
   }, []);
   return (
-    <div>
-      {/* <Link to={`/addCustomRecipe`}>Add your own recipe!</Link> */}
+    <div className="recipes-container">
+      <h1>Here you can find all of {feelingName} recipes!</h1>
+      <Link className="link-adding-customRecipe" to={`/addCustomRecipe`}>
+        Add your own recipe!
+      </Link>
       {recipes.map((recipe) => {
         return <Recipe recipe={recipe} key={recipe.recipe_id} />;
       })}

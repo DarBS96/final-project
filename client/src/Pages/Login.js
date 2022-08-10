@@ -73,8 +73,8 @@ function Login(props) {
               required
             />
           </div>
-          <Button type="submit" className="btn" variant="dark ">
-            Login
+          <Button type="submit" className="btn" size="small" variant="light ">
+            <span className="login-text">Login</span>
           </Button>
         </form>
         <Link style={{ color: "black" }} to={"/register"}>

@@ -2,8 +2,9 @@ import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { selectedRecipe, recipeViews } from "../../Redux/features/recipesSlice";
 import { useSelector, useDispatch } from "react-redux";
+import StarRating from "./Inputs/StarRating";
 import axios from "axios";
-import "../.././css/recipe.css";
+import "../.././css/recipeList.css";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
 
 function Recipe({ recipe }) {
@@ -25,17 +26,12 @@ function Recipe({ recipe }) {
   };
 
   return (
-    // <div id={recipe_id} className="recipe-container">
-    //   <h1>{title}</h1>
-    //   <img style={{ width: "200px", height: "200px" }} src={img} alt="fds" />
-    //   <br />
-    //   <button onClick={handleClick}>Click to see the full recipe</button>
-    // </div>
     <div className="card-container">
       <div className="card u-clearfix">
         <div>
           <div className="card-body">
             <span className="card-author subtle">{author}</span>
+            {/* <StarRating readOnly={true} /> */}
             <h2 className="card-title">{title}</h2>
             <p className="card-description subtle">{description}</p>
             <div className="card-read" onClick={handleClick}>

@@ -2,6 +2,16 @@
     font-family: "Pacifico", cursive;
 }
 
+
+/* .navbar {
+    background-color: #a2b5bb;
+} */
+
 body {
-    background-color: #f1eee9;
+    background-color: #a2b5bb;
+    height: 100vh;
+}
+
+.nav-link:hover {
+    background-color: #d3cedf;
 }
