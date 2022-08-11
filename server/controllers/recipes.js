@@ -7,7 +7,6 @@ import {
   getAllProperties,
   updateProperty,
   pushUserInfoToDB,
-  deleteProperty,
 } from "../database/generalFuncs.js";
 import db from "../database/connection.js";
 
@@ -17,21 +16,18 @@ export const getRecipesFromDB = async (req, res) => {
   const recipes = await getProperty("recipes", "*", { fk_feeling_id: id });
   res.send(recipes);
 };
-// export const getRecipeFromDB = async (req, res) => {
-//   console.log("hello");
-//   const { id } = req.params;
-//   console.log(id);
-//   const recipe = await getProperty("recipes", "*", { id });
-//   res.send(recipe);
-// };
-
 export const getAllComments = (req, res) => {
   const token = req.headers.authorization;
   const { recipe_id } = req.body;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    const comments = await getProperty("comments", "*", { recipe_id });
+    //Display all comments in a ascending order
+    const comments = await db
+      .table("comments")
+      .select("*")
+      .orderBy("comment_date", "asc")
+      .where({ recipe_id });
     res.send({ comments });
   });
 };

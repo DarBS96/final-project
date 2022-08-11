@@ -7,10 +7,10 @@ import {
   getRatingsAvg,
   addingComment,
   deleteComment,
+  UpdateComment,
 } from "../controllers/recipeDetails.js";
 import {
   getRecipesFromDB,
-  // getRecipeFromDB,
   getAllComments,
   displayFilteredRecipesByFeelings,
   saveRecipe,
@@ -20,7 +20,6 @@ import {
 import { authenticateToken } from "../middleware/auth.js";
 
 routerRecipes.get("/recipes", authenticateToken, getRecipesFromDB);
-// routerRecipes.get("/recipes/:id", authenticateToken, getRecipeFromDB);
 routerRecipes.post("/recipes/rating", addingRating);
 routerRecipes.post("/recipes/rating/average", getRatingsAvg);
 routerRecipes.post("/recipes/views", addingViews);
@@ -31,5 +30,6 @@ routerRecipes.post("/recipes/saveRecipe", saveRecipe);
 routerRecipes.post("/recipes/addingCustomRecipe", addingCustomRecipe);
 routerRecipes.get("/recipes/myComments", getMyComments);
 routerRecipes.post("/recipes/deleteComment", deleteComment);
+routerRecipes.post("/recipes/updateComment", UpdateComment);
 
 export default routerRecipes;

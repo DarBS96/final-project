@@ -5,6 +5,7 @@ import {
   pushUserInfoToDB,
   updateProperty,
   getProperty,
+  deleteProperty,
 } from "../database/generalFuncs.js";
 import db from "../database/connection.js";
 
@@ -111,16 +112,33 @@ export const addingComment = (req, res, next) => {
 };
 
 export const deleteComment = async (req, res) => {
-  const { selectedComment } = req.body;
+  const { comment_id } = req.body;
+  console.log(comment_id);
   const token = req.headers.authorization;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
     //delete comment
     await deleteProperty("comments", "*", {
-      comment_id: Number(selectedComment),
+      comment_id: Number(comment_id),
       user_id: decoded.userId,
     });
     res.send();
+  });
+};
+export const UpdateComment = async (req, res) => {
+  const { comment_id, content } = req.body;
+  const token = req.headers.authorization;
+  if (token == null) return res.status(401).send("Must send a token");
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).send("Token no longer valid");
+    //delete comment
+    await updateProperty(
+      "comments",
+      { comment_body: content, comment_date: new Date().toString() },
+      { comment_id: Number(comment_id), user_id: decoded.userId }
+    );
+
+    res.send("Successfully updated");
   });
 };
