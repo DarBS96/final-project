@@ -28,3 +28,7 @@ export const updateProperty = (table, property, where) => {
 export const getAverage = (table, column, property) => {
   return db.table(table).avg(column).where(property);
 };
+
+export const deleteProperty = (table, property, where) => {
+  return db.table(table).del(property).where(where);
+};

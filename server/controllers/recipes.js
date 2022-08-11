@@ -4,21 +4,26 @@ import jwt from "jsonwebtoken";
 
 import {
   getProperty,
+  getAllProperties,
   updateProperty,
   pushUserInfoToDB,
+  deleteProperty,
 } from "../database/generalFuncs.js";
 import db from "../database/connection.js";
 
 export const getRecipesFromDB = async (req, res) => {
   const { id } = req.headers;
-  const recipes = await getProperty("recipes", "*", { fk_feeling_id: +id });
+  console.log(id);
+  const recipes = await getProperty("recipes", "*", { fk_feeling_id: id });
   res.send(recipes);
 };
-export const getRecipeFromDB = async (req, res) => {
-  const { id } = req.params;
-  const recipes = await getProperty("recipes", "*", { id });
-  res.send(recipes);
-};
+// export const getRecipeFromDB = async (req, res) => {
+//   console.log("hello");
+//   const { id } = req.params;
+//   console.log(id);
+//   const recipe = await getProperty("recipes", "*", { id });
+//   res.send(recipe);
+// };
 
 export const getAllComments = (req, res) => {
   const token = req.headers.authorization;
@@ -26,20 +31,22 @@ export const getAllComments = (req, res) => {
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    const comments = await getProperty(
-      "comments",
-      {
-        comment_date: "comment_date",
-        comment_title: "comment_title",
-        comment_body: "comment_body",
-        comment_date: "comment_date",
-      },
-      { recipe_id }
-    );
-    res.send({ username: decoded.username, comments });
+    const comments = await getProperty("comments", "*", { recipe_id });
+    res.send({ comments });
   });
 };
 
+export const getMyComments = (req, res) => {
+  const token = req.headers.authorization;
+  if (token == null) return res.status(401).send("Must send a token");
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).send("Token no longer valid");
+    const myComments = await getProperty("comments", "*", {
+      user_id: decoded.userId,
+    });
+    res.send(myComments);
+  });
+};
 export const saveRecipe = (req, res) => {
   const { recipe_id, saved } = req.body;
   const token = req.headers.authorization;
@@ -103,9 +110,9 @@ export const displayFilteredRecipesByFeelings = async (req, res) => {
 };
 
 export const addingCustomRecipe = (req, res, next) => {
-  const { title, recipeImg, description, author, ingredients, preparation } =
+  const { title, description, author, ingredients, preparation } =
     req.body.customRecipe;
-  const { feeling_id } = req.body;
+  const { feeling_id, photo } = req.body;
   const token = req.headers.authorization;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
@@ -113,7 +120,7 @@ export const addingCustomRecipe = (req, res, next) => {
     await pushUserInfoToDB("recipes", {
       user_id: decoded.userId,
       title,
-      img: recipeImg,
+      img: photo,
       description,
       author,
       ingredients,

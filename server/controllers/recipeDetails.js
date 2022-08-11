@@ -48,11 +48,14 @@ export const getRatingsAvg = async (req, res) => {
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-
     //check if there is rating of a recipe
     let isRating = await getProperty("users_recipes", "rating", {
       recipe_id,
       user_id: decoded.userId,
+    });
+
+    let ratingsNumber = await getProperty("users_recipes", "rating", {
+      recipe_id,
     });
     //Check if there is rating and user can't rate anymore
     if (isRating.some((rating) => Number(rating.rating))) {
@@ -67,10 +70,10 @@ export const getRatingsAvg = async (req, res) => {
       .avg("rating")
       .where({ recipe_id })
       .andWhere("rating", "!=", 0);
-
     res.send({
       ratingAvg: ratingAvg[0].avg,
       rating: isRating,
+      votes: ratingsNumber.length,
     });
   });
 };
@@ -92,16 +95,31 @@ export const addingViews = async (req, res, next) => {
 
 export const addingComment = (req, res, next) => {
   const token = req.headers.authorization;
-  const { title, content, recipe_id } = req.body.values;
+  const { content, recipe_id, username } = req.body.values;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
     await pushUserInfoToDB("comments", {
       user_id: decoded.userId,
       comment_date: new Date().toString(),
-      comment_title: title,
       comment_body: content,
       recipe_id,
+      username,
+    });
+    res.send();
+  });
+};
+
+export const deleteComment = async (req, res) => {
+  const { selectedComment } = req.body;
+  const token = req.headers.authorization;
+  if (token == null) return res.status(401).send("Must send a token");
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).send("Token no longer valid");
+    //delete comment
+    await deleteProperty("comments", "*", {
+      comment_id: Number(selectedComment),
+      user_id: decoded.userId,
     });
     res.send();
   });
