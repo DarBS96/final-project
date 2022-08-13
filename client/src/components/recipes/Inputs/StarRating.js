@@ -12,7 +12,6 @@ const StarRating = ({ recipe_id }) => {
   const token = useSelector((store) => store.registerReducer.token);
   const { ratingsAvg, votes } = useSelector((store) => store.recipesSlice);
   const [value, setValue] = useState(ratingsAvg);
-  // const [currVotes, setVotes] = useState("");
   const [ratingIsExist, setRatingIsExist] = useState(false);
   useEffect(() => {
     const getRatingAvg = async () => {
@@ -26,10 +25,8 @@ const StarRating = ({ recipe_id }) => {
           Authorization: token,
         },
       });
-      console.log(data.data);
 
       dispatch(ratingAvg(data.data.ratingAvg));
-      console.log(ratingsAvg);
 
       dispatch(setVotes(data.data.votes));
       //Check if user can rate

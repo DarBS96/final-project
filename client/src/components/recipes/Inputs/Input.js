@@ -8,6 +8,7 @@ function Input({ label, type, id, placeholder, onChange, isRequired, accept }) {
       <Form.Group className="mb-3 container">
         <Form.Label>{label}</Form.Label>
         <Form.Control
+          style={{ width: "420px" }}
           onChange={onChange}
           type={type}
           placeholder={placeholder}

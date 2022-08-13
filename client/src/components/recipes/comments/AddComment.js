@@ -11,8 +11,8 @@ function Comment({ recipe_id }) {
   //   (store) => store.recipesSlice
   // );
   const initialState = {
-    title: "",
     content: "",
+    username: "",
     recipe_id,
   };
   const [values, setValues] = useState(initialState);
@@ -50,34 +50,33 @@ function Comment({ recipe_id }) {
     //Show all comments
   };
   return (
-    <div class="comment-form">
+    <div className="comment-form">
       <form onSubmit={handleSubmit} className="form" name="form">
-        <div class="form-row">
+        <div className="form-row">
           <textarea
             className="input"
             placeholder="Add comment..."
             required
-            value={values.title}
-            id="comment-title"
-            name="title"
+            value={values.content}
+            name="content"
             onChange={handleChange}
           ></textarea>
         </div>
 
-        <div class="form-row">
+        <div className="form-row">
           <input
             required
-            value={values.content}
-            id="comment-content"
+            value={values.username}
+            // id="comment-username"
             type="text"
-            name="content"
+            name="username"
             onChange={handleChange}
             className="input"
             placeholder="name"
           />
         </div>
 
-        <div class="form-row">
+        <div className="form-row">
           <input type="submit" value="Add Comment" />
         </div>
       </form>

@@ -17,10 +17,10 @@ function NavbarComp() {
     <div>
       <Navbar bg="light" expand="lg" collapseOnSelect="true">
         <Container className="navbar-container">
-          <Navbar.Brand className="navbar-brand">Feeleat!</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+          <Navbar.Brand className="navbar-brand">FeelEat!</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav  " />
+          <Navbar.Collapse id="basic-navbar-nav ">
+            <Nav className="me-auto w-100">
               <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
@@ -28,24 +28,45 @@ function NavbarComp() {
                 My comments
               </Nav.Link>
               <NavDropdown title="Favorites" id="basic-nav-dropdown">
-                <Nav.Link className="nav-link" as={Link} to={`/savedRecipes/1`}>
+                <Nav.Link
+                  className="dropdown-custom"
+                  as={Link}
+                  to={`/savedRecipes/1`}
+                >
                   Romantic
                 </Nav.Link>
-                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/3"}>
+                <Nav.Link
+                  className="dropdown-custom"
+                  as={Link}
+                  to={"/savedRecipes/3"}
+                >
                   Tipsy
                 </Nav.Link>
-                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/4"}>
+                <Nav.Link
+                  className="dropdown-custom"
+                  as={Link}
+                  to={"/savedRecipes/4"}
+                >
                   Lonely
                 </Nav.Link>
-                <Nav.Link className="nav-link" as={Link} to={"/savedRecipes/5"}>
+                <Nav.Link
+                  className="dropdown-custom"
+                  as={Link}
+                  to={"/savedRecipes/5"}
+                >
                   Tense
                 </Nav.Link>
               </NavDropdown>
+              <Nav.Link
+                className="ms-0 ms-lg-auto"
+                onClick={handleClick}
+                as={Link}
+                to={"/login"}
+              >
+                Logout
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Nav.Link onClick={handleClick} as={Link} to={"/login"}>
-            Logout
-          </Nav.Link>
         </Container>
       </Navbar>
     </div>

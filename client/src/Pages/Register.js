@@ -14,7 +14,6 @@ function Register(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userRegisterInfo } = useSelector((store) => store.registerReducer);
-
   const [isExist, setIsExist] = useState({
     isExist: false,
     msg: "",

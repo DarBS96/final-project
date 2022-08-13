@@ -51,7 +51,6 @@ const recipesReducer = createSlice({
       state.views = action.payload;
     },
     ratingAvg: (state, action) => {
-      console.log(action);
       state.ratingsAvg = action.payload;
     },
     setVotes: (state, action) => {
@@ -66,7 +65,6 @@ const recipesReducer = createSlice({
       state.customRecipe.ingredients = state.customRecipe.ingredients.concat(
         action.payload.ingredients
       );
-      console.log(current(state));
     },
     addPreparation: (state, action) => {
       state.customRecipe.preparation = state.customRecipe.preparation.concat(

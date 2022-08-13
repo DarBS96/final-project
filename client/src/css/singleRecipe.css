@@ -4,13 +4,14 @@
 .screen-container {
     display: flex;
     gap: 150px;
+    margin-left: auto;
 }
 
 .recipe-overview {
     width: 800px;
     background-color: #e4e9fd;
-    background-image: -webkit-linear-gradient(70deg, #fbc5c5 55%, white 55%);
-    min-height: 800px;
+    background-image: -webkit-linear-gradient(70deg, #60737e 55%, white 55%);
+    max-height: 800px;
     font-family: "helvetica neue";
     display: flex;
     flex-direction: column;
@@ -92,6 +93,7 @@
     font-size: 25px;
     letter-spacing: 4px;
     font-weight: 500;
+    color: white;
 }
 
 .ingredients-title {
@@ -103,21 +105,19 @@
 .ingredient {
     text-align: start;
     margin-left: 35px;
+    color: white;
 }
 
 .wrapped-heart {
     width: 58px;
     height: 58px;
     border: 0;
-    /* position: absolute; */
     top: 0;
     right: 20px;
     /* z-index: 2; */
     font-size: 0;
     border-radius: 50%;
     background-color: #fff;
-    /* box-shadow: 0 1px 5px var(--primary-color);
-    transition: box-shadow 200ms ease, transform 200ms ease; */
     cursor: pointer;
     outline: none;
 }
@@ -129,6 +129,7 @@
 
 .preparation {
     margin-right: 35px;
+    color: white;
 }
 
 .heart-save {
@@ -136,12 +137,6 @@
     width: 30px;
     margin-top: auto;
     margin-top: 17px;
-    /* margin: auto; */
-    /* justify-content: center; */
-    /* position: absolute; */
-    /* float: left; */
-    /* text-align: start;
-    margin-right: 50px; */
 }
 
 .author {
@@ -150,4 +145,5 @@
     margin-top: 185px;
     font-size: 30px;
     font-family: "Gamja Flower", cursive;
+    color: white;
 }

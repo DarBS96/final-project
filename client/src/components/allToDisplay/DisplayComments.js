@@ -8,7 +8,7 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/showAllComments`;
 function DisplayComments(props) {
   const token = useSelector((store) => store.registerReducer.token);
   const dispatch = useDispatch();
-  const { username, comments, refreshComments } = useSelector(
+  const { comments, refreshComments } = useSelector(
     (store) => store.commentSlice
   );
   const { recipes } = useSelector((store) => store.recipesSlice);
@@ -45,7 +45,7 @@ function DisplayComments(props) {
       {isComment && (
         <div className="comments-container">
           {comments?.map((comment, idx) => {
-            return <Comment key={idx} comment={comment} username={username} />;
+            return <Comment key={idx} comment={comment} />;
           })}
         </div>
       )}

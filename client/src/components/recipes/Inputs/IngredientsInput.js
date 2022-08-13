@@ -5,22 +5,21 @@ import { addIngredients } from "../../../Redux/features/recipesSlice";
 import { v4 as uuid } from "uuid";
 
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
+import { BsPlusCircle } from "react-icons/bs";
 
 function IngredientsInput() {
-  const id = uuid();
   const initialState = {
-    id,
+    id: uuid(),
     name: "",
     amount: "",
     units: "",
   };
   const [values, setValues] = useState(initialState);
+  const [isValid, setIsValid] = useState(true);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(value);
     setValues((values) => {
       return {
         ...values,
@@ -29,40 +28,53 @@ function IngredientsInput() {
     });
   };
 
-  const handleClick = () => {
-    console.log([values]);
-    dispatch(addIngredients({ ingredients: [values] }));
-    setValues(initialState);
+  //Reacting kike submit inside form group
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!values.name || !values.amount) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+      dispatch(addIngredients({ ingredients: [values] }));
+      setValues(initialState);
+    }
   };
 
   return (
-    <div>
-      <InputGroup className="mb-3 container">
-        <InputGroup.Text>Ingredients</InputGroup.Text>
-        <Form.Control
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          value={values.name}
-          autoComplete="off"
-        />
-        <Form.Control
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          onChange={handleChange}
-          value={values.amount}
-          autoComplete="off"
-        />
-        <Form.Control
-          name="units"
-          placeholder="Units"
-          onChange={handleChange}
-          value={values.units}
-          autoComplete="off"
-        />
-        <Button onClick={handleClick}>+</Button>
-      </InputGroup>
+    <div className="mb-3 container d-flex">
+      <div>
+        <InputGroup style={{ width: "420px" }}>
+          <Form.Control
+            name="name"
+            placeholder="Name"
+            onChange={handleChange}
+            value={values.name}
+            autoComplete="off"
+          />
+          <Form.Control
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            onChange={handleChange}
+            value={values.amount}
+            autoComplete="off"
+          />
+          <Form.Control
+            name="units"
+            placeholder="Units"
+            onChange={handleChange}
+            value={values.units}
+            autoComplete="off"
+          />
+
+          {!isValid && <p>Sorry you have to fill this up first!</p>}
+        </InputGroup>
+      </div>
+      <div>
+        <button className="btn-add-item" onClick={handleClick}>
+          <BsPlusCircle className="btn-add-item-icon" />
+        </button>
+      </div>
     </div>
   );
 }

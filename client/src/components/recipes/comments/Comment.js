@@ -1,14 +1,12 @@
 import React from "react";
 import "../../.././css/comment.css";
-function Comment({ comment, username }) {
-  const { comment_body, comment_date, comment_title } = comment;
+function Comment({ comment }) {
+  const { comment_id, comment_body, comment_date, username } = comment;
   const date = new Date(comment_date).toLocaleString("EN-US");
 
   return (
-    // <div className="comments">
-    <div className="comment">
+    <div id={comment_id} className="comment">
       <div className="comment-box">
-        <h5 className="comment-title">{comment_title}</h5>
         <div className="comment-text">{comment_body}</div>
         <div className="comment-footer">
           <div className="comment-info">
@@ -18,7 +16,6 @@ function Comment({ comment, username }) {
         </div>
       </div>
     </div>
-    // </div>
   );
 }
 

@@ -1,7 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import VerifyToken from "../../components/VerifyToken";
 
 const URL = `${process.env.REACT_APP_URL}/feelingEat`;
 

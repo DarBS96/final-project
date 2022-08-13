@@ -20,13 +20,6 @@ function Recipe(props) {
     recipe_id,
   } = recipes[0];
 
-  let options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const wantedSyntaxDate = new Date(date).toLocaleString("en-US", options);
   return (
     <main className="screen-container">
       <div className="recipe-overview">
@@ -75,28 +68,6 @@ function Recipe(props) {
         <DisplayComments />
       </div>
     </main>
-
-    // <div id={recipe_id} className="recipe-container">
-    //   <h1>{title}</h1>
-    //   <img style={{ width: "200px", height: "200px" }} src={img} alt="fds" />
-    //   <br />
-    //   <StarRating recipe_id={recipe_id} />
-    //   <h2>Views:</h2>
-    //   <p>{views}</p>
-    //   <SaveRecipe recipe_id={recipe_id} />
-    //   <h2>Ingredients</h2>
-    //   {ingredients.map((ingredient, idx) => (
-    //     <p key={idx}>{name + amount + units}</p>
-    //   ))}
-    //   <h2>Method</h2>
-    //   {/* <p>Method{preparation}</p> */}
-    //   <h2>Author</h2>
-    //   <p>{author}</p>
-    //   <h2>Write at:</h2>
-    //   <p>{wantedSyntaxDate}</p>
-    //   <AddComment recipe_id={recipe_id} />
-    //   <DisplayComments />
-    // </div>
   );
 }
 

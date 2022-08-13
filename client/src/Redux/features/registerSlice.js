@@ -8,10 +8,8 @@ const initialState = {
     email: "",
     password: "",
   },
-  token: {
-    token: "",
-    isLogin: false,
-  },
+  token: "",
+  isLogin: false,
 };
 
 const registerReducer = createSlice({

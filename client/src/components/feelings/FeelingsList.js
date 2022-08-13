@@ -18,8 +18,10 @@ function FeelingsList(props) {
   }, []);
 
   const handleClick = (e) => {
-    dispatch(selectedFeeling(e.target.id));
-    dispatch(feelingName(e.target.name));
+    //name attribute doesn't working for some reason
+    const { id, textContent } = e.target;
+    dispatch(selectedFeeling(id));
+    dispatch(feelingName(textContent));
     navigate(`/recipes`);
   };
 

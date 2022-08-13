@@ -1,49 +1,83 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ".././css/myComments.css";
 import Comment from "../components/recipes/comments/Comment";
+import UpdateComment from "../components/recipes/comments/UpdateComment";
+import {
+  getComments,
+  setSelectedComment,
+  setEditDone,
+} from "../Redux/features/commentSlice";
 import { BsFillPencilFill, BsTrash } from "react-icons/bs";
-const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/myComments`;
+const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/deleteComment`;
 
 function MyComments(props) {
-  const token = useSelector((store) => store.registerReducer.token);
-  const [myComments, setMyComments] = useState([]);
+  const dispatch = useDispatch();
+  const { token } = useSelector((store) => store.registerReducer);
+  const { username } = useSelector(
+    (store) => store.registerReducer.userRegisterInfo
+  );
+  const { isEditDone } = useSelector((store) => store.commentSlice);
+  const { comments } = useSelector((store) => store.commentSlice);
 
   useEffect(() => {
-    const getMyComments = async () => {
-      const data = await axios({
-        method: "GET",
-        url: `${URL}`,
-        headers: {
-          Authorization: token,
-        },
-      });
-
-      setMyComments(data.data);
-    };
-    getMyComments();
+    dispatch(getComments());
   }, []);
+
+  const deleteComment = async (comment_id) => {
+    dispatch(setSelectedComment(comment_id));
+    const data = await axios({
+      method: "POST",
+      url: URL,
+      data: {
+        comment_id,
+      },
+      headers: {
+        Authorization: token,
+      },
+    });
+    setTimeout(() => {
+      dispatch(getComments());
+    }, 1000);
+  };
+  const updateComment = async (comment_id) => {
+    dispatch(setSelectedComment(comment_id));
+    dispatch(setEditDone(true));
+  };
   return (
-    // <div>
     <div className="my-comments-container">
       <h1 className="my-comments-title">Edit my comments</h1>
-      {myComments.map((comment, idx) => {
-        return (
-          <div className="my-comments">
-            <div>
-              <BsFillPencilFill className="edit-comment" />
-              <BsTrash className="delete-comment" />
+      {isEditDone && <UpdateComment />}
+      {comments.length >= 1 ? (
+        comments.map((comment, idx) => {
+          return (
+            <div
+              id={comment.comment_id}
+              key={idx}
+              className="single-comment-container"
+            >
+              <div className="edit-delete-wrapper">
+                <BsFillPencilFill
+                  onClick={(e) => updateComment(comment.comment_id)}
+                  className="edit-comment"
+                />
+                <BsTrash
+                  onClick={(e) => deleteComment(comment.comment_id)}
+                  className="delete-comment"
+                />
+              </div>
 
               <div className="comment-component">
-                <Comment key={idx} comment={comment} />
+                <Comment key={idx} comment={comment} username={username} />
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <h1>No Comments to display, You warmly welcomed to add some!</h1>
+      )}
     </div>
-    // </div>
   );
 }
 

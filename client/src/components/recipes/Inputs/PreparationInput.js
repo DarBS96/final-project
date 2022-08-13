@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import { addPreparation } from "../../../Redux/features/recipesSlice";
 import { v4 as uuid } from "uuid";
+import { BsPlusCircle } from "react-icons/bs";
 
 function PreparationInput(props) {
   const id = uuid();
@@ -15,6 +15,7 @@ function PreparationInput(props) {
   };
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,33 +24,44 @@ function PreparationInput(props) {
       [name]: value,
     });
   };
-
-  const handleClick = () => {
-    dispatch(addPreparation({ preparation: [values] }));
-    setValues(initialState);
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!values.number || !values.method) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+      dispatch(addPreparation({ preparation: [values] }));
+      setValues(initialState);
+    }
   };
 
   return (
-    <div>
-      <InputGroup className="mb-3 container">
-        <InputGroup.Text>Preparation</InputGroup.Text>
-        <Form.Control
-          type="number"
-          placeholder="Number"
-          onChange={handleChange}
-          name="number"
-          value={values.number}
-          autoComplete="off"
-        />
-        <Form.Control
-          placeholder="Method"
-          onChange={handleChange}
-          name="method"
-          value={values.method}
-          autoComplete="off"
-        />
-        <Button onClick={handleClick}>+</Button>
-      </InputGroup>
+    <div className="mb-3 container d-flex">
+      <div>
+        <InputGroup style={{ width: "420px" }}>
+          <Form.Control
+            type="number"
+            placeholder="Number"
+            onChange={handleChange}
+            name="number"
+            value={values.number}
+            autoComplete="off"
+          />
+          <Form.Control
+            placeholder="Method"
+            onChange={handleChange}
+            name="method"
+            value={values.method}
+            autoComplete="off"
+          />
+        </InputGroup>
+        {!isValid && <p>Sorry you have to fill this up first!</p>}
+      </div>
+      <div>
+        <button className="btn-add-item" onClick={handleClick}>
+          <BsPlusCircle className="btn-add-item-icon" />
+        </button>
+      </div>
     </div>
   );
 }

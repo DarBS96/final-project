@@ -1,7 +1,6 @@
-.navbar-brand {
-    font-family: "Pacifico", cursive;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
 
 /* .navbar {
     background-color: #a2b5bb;
@@ -10,8 +9,20 @@
 body {
     background-color: #a2b5bb;
     height: 100vh;
+    font-family: "helvetica neue";
+}
+
+.navbar-brand {
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
+    letter-spacing: 3px;
+}
+
+.dropdown-custom:hover {
+    background-color: #d3cedf;
 }
 
 .nav-link:hover {
-    background-color: #d3cedf;
+    color: #000000;
+    font-size: 17px;
 }

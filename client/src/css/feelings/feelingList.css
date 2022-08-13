@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
 svg {
     margin: 10px;
     width: 9em;
@@ -9,12 +11,8 @@ svg {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 100px;
+    margin-top: 80px;
 }
-
-
-/* .emotion-container {
-} */
 
 svg.happy .face {
     -webkit-animation: upAndDown 0.8s ease infinite;
@@ -22,9 +20,7 @@ svg.happy .face {
 }
 
 .emotion-description {
-    font-family: "BhuTuka Expanded One", "cursive";
-    font-family: "Dosis", sans-serif;
-    font-weight: bold;
+    font-family: "helvetica neue";
     font-size: 25px;
     cursor: pointer;
 }
@@ -34,8 +30,10 @@ svg.happy .face {
 }
 
 .feelingList-title {
-    font-family: "Pacifico", cursive;
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
     margin-top: 80px;
+    letter-spacing: 4px;
 }
 
 svg.happy .scaleFace {

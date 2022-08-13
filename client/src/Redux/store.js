@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import logger from "redux-logger";
 import registerReducer from "./features/registerSlice.js";
 import feelingSlice from "./features/feelingSlice.js";
 import recipesSlice from "./features/recipesSlice.js";
