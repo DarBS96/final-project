@@ -9,7 +9,7 @@ const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/saveRecipe`;
 function SaveRecipe({ recipe_id }) {
   const token = useSelector((store) => store.registerReducer.token);
   const feeling_id = useSelector(
-    (store) => store.recipesSlice.recipes[0].fk_feeling_id
+    (store) => store.recipesSlice.selectedRecipe.fk_feeling_id
   );
   const ref = useRef(null);
   const [isSaved, setIsSaved] = useState(false);
@@ -33,33 +33,41 @@ function SaveRecipe({ recipe_id }) {
 
       if (data.data.recipeAlreadySaved) {
         setIsSaved(true);
-        //update the satate so the Modal will display appropriate response
         dispatch(isRecipeSaved(true));
+      } else {
+        setIsSaved(false);
+        dispatch(isRecipeSaved(false));
       }
     };
-    recipeIsSaved(showModal);
+    recipeIsSaved();
 
     const btnElement = ref.current;
     if (isSaved)
       return () => {
-        btnElement.current.removeEventListener("click", handleClick);
+        btnElement.removeEventListener("click", handleClick);
       };
-  }, []);
+  }, [showModal]);
 
   const handleClick = async (e) => {
     setShowModal(true);
-
-    const data = await axios({
-      method: "POST",
-      url: `${URL}`,
-      data: {
-        recipe_id,
-        saved: true,
-      },
-      headers: {
-        Authorization: token,
-      },
-    });
+    console.log(isSaved);
+    if (!isSaved) {
+      const data = await axios({
+        method: "POST",
+        url: `${URL}`,
+        data: {
+          recipe_id,
+          saved: true,
+        },
+        headers: {
+          Authorization: token,
+        },
+      });
+    }
+    //If user won't close it, the modal will disappear after 3 seconds
+    setTimeout(() => {
+      setShowModal(false);
+    }, 3000);
   };
   return (
     <div>

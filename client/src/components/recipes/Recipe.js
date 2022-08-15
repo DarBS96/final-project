@@ -13,7 +13,7 @@ function Recipe({ recipe }) {
   const { title, img, recipe_id, author, description } = recipe;
   // let views = useSelector((store) => store.recipesSlice.views);
   const handleClick = async () => {
-    selectedRecipe(recipe);
+    dispatch(selectedRecipe(recipe));
     const data = await axios({
       method: "POST",
       url: URL,

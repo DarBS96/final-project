@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ratingAvg, setVotes } from "../../../Redux/features/recipesSlice";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
 
 const StarRating = ({ recipe_id }) => {
@@ -66,6 +67,7 @@ const StarRating = ({ recipe_id }) => {
       {!ratingIsExist ? (
         <div className="rating-container">
           <Rating
+            size={"small"}
             name="simple-controlled"
             value={Number(value)}
             onChange={(event, newValue) => handleChange(event, newValue)}
@@ -75,7 +77,8 @@ const StarRating = ({ recipe_id }) => {
       ) : (
         <div className="rating-container">
           <Rating
-            size="medium"
+            column
+            size={"small"}
             className="stars-rating"
             name="read-only"
             value={Number(value)}

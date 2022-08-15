@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
 .my-comments-container {
     display: flex;
     flex-direction: column;
@@ -8,6 +11,9 @@
 .my-comments-title {
     margin-top: 20px;
     text-align: center;
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
+    letter-spacing: 4px;
 }
 
 .edit-delete-wrapper {
@@ -30,4 +36,29 @@
     width: 24px;
     cursor: pointer;
     position: absolute;
+}
+
+
+/* @media only screen and (max-width: 1199.98px) {
+    .edit-delete-wrapper {
+        left: 60%;
+    }
+}
+
+@media only screen and (max-width: 991.98px) {
+    .comment-box {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+    .edit-delete-wrapper {
+        left: 66%;
+    }
+} */
+
+@media (max-width: 575.98px) {
+    .edit-delete-wrapper {
+        left: 73%;
+    }
 }

@@ -20,11 +20,12 @@
 }
 
 .section-one {
-    height: 280px;
+    min-height: 280px;
 }
 
 .section-two {
-    height: 500px;
+    min-height: 500px;
+    display: flex;
 }
 
 .recipe-img {
@@ -37,9 +38,8 @@
 .img-description-title-wrapper {
     display: flex;
     justify-content: end;
-    margin-right: 50px;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
 .description-title-wrapper {
@@ -111,15 +111,26 @@
 .wrapped-heart {
     width: 58px;
     height: 58px;
-    border: 0;
-    top: 0;
-    right: 20px;
-    /* z-index: 2; */
+    border: 2x solid black;
     font-size: 0;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: white;
     cursor: pointer;
-    outline: none;
+    color: #60737e;
+    margin-top: 30px;
+}
+
+.wrapped-heart:hover {
+    background-color: #d5bbc4;
+}
+
+
+/* .ingredients-container {
+} */
+
+.preparation-container {
+    margin-left: 58px;
+    margin-top: 20px;
 }
 
 .preparation-title {
@@ -141,9 +152,62 @@
 
 .author {
     text-align: right;
-    margin-right: 50px;
-    margin-top: 185px;
+    margin-top: auto;
     font-size: 30px;
     font-family: "Gamja Flower", cursive;
     color: white;
+    margin-left: auto;
+    margin-right: 35px;
+}
+
+@media (max-width: 575.98px) {
+    .screen-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .recipe-overview {
+        width: 375px;
+        margin: auto;
+    }
+    .main-title {
+        font-size: 30px;
+    }
+    .recipe-img {
+        height: 160px;
+        width: 150px;
+        padding: 0px;
+        margin-right: 25px;
+        margin-top: 5px;
+    }
+    .description-title-wrapper {
+        margin-right: 30px;
+        height: 10px;
+    }
+    .img-description-title-wrapper {
+        height: 200px;
+    }
+    .rating-container {
+        margin-left: 90px;
+    }
+    .views-rating-wrapper {
+        width: 100%;
+        margin: auto;
+    }
+    .description-title-wrapper {
+        margin-left: 30px;
+    }
+    .recipe-overview {
+        background-image: -webkit-linear-gradient(77deg, #60737e 59%, white 59%);
+    }
+    .section-two {
+        min-height: 455px;
+    }
+    /* .wrapped-heart {
+        margin-top: 0px;
+        width: 50px;
+        height: 50px;
+        margin-right: 100px;
+    } */
 }

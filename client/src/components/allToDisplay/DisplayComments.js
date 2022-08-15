@@ -11,12 +11,12 @@ function DisplayComments(props) {
   const { comments, refreshComments } = useSelector(
     (store) => store.commentSlice
   );
-  const { recipes } = useSelector((store) => store.recipesSlice);
+  const { selectedRecipe } = useSelector((store) => store.recipesSlice);
 
   const [isComment, setIsComment] = useState(false);
 
   useEffect(() => {
-    const { recipe_id } = recipes[0];
+    const { recipe_id } = selectedRecipe;
 
     const getAllRecipeComments = async () => {
       const data = await axios({

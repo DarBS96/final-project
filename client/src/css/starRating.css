@@ -16,11 +16,9 @@
 .rating-container {
     display: flex;
     align-items: center;
-    margin-left: 50px;
+    /* margin-left: 50px; */
     /* justify-content: center; */
 }
-
-.stars-rating {}
 
 .votes {
     font-size: 20px;
@@ -31,3 +29,11 @@
     width: 45%;
     height: 0;
 }
+
+
+/* @media (max-width: 575.98px) {
+    .votes {
+        margin-right: 50px;
+        width: 20px;
+    }
+} */

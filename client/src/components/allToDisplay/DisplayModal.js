@@ -11,6 +11,7 @@ function DisplayModal() {
   const handleClose = () => {
     setShow(false);
   };
+  console.log(isSaved);
   return (
     <>
       <Modal show={show} onHide={handleClose}>

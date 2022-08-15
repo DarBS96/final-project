@@ -35,7 +35,6 @@ function AddRecipe(props) {
   // const { isSaved } = useSelector((store) => store.recipesSlice);
   const ref = useRef();
 
-  //In order to restart the values
   useEffect(() => {
     if (
       values.title &&
@@ -44,8 +43,9 @@ function AddRecipe(props) {
       ingredients.length >= 1 &&
       preparation.length >= 1
     ) {
+      const btnElement = ref.current;
+
       return () => {
-        const btnElement = ref.current;
         btnElement.disabled = false;
       };
     }
@@ -62,6 +62,7 @@ function AddRecipe(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     // dispatch(isRecipeSaved(false));
     const data = await axios({
       method: "POST",
@@ -75,8 +76,8 @@ function AddRecipe(props) {
         Authorization: token,
       },
     });
-    setValues(initialState);
     dispatch(restartIngredientsAndMethods());
+    // setValues({ title: "", description: "", author: "" });
   };
 
   return (

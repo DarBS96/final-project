@@ -50,7 +50,7 @@ function Register(props) {
 
   return (
     <div>
-      <h1 className="register-title">Let's start feelEat!</h1>
+      <h1 className="register-title">Let's start FeelEat!</h1>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="inputs-register-container">
           <input
@@ -99,7 +99,7 @@ function Register(props) {
             required
           />
         </div>
-        <Button type="submit" className="btn" variant="light ">
+        <Button type="submit" className="btn-register" variant="light ">
           Register
         </Button>
       </form>

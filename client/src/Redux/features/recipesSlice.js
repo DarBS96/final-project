@@ -14,6 +14,7 @@ const initialState = {
     preparation: [],
   },
   isSaved: false,
+  selectedRecipe: "",
 };
 
 export const getRecipes = createAsyncThunk(
@@ -45,7 +46,7 @@ const recipesReducer = createSlice({
   initialState,
   reducers: {
     selectedRecipe: (state, action) => {
-      state.recipes = action.payload;
+      state.selectedRecipe = action.payload;
     },
     recipeViews: (state, action) => {
       state.views = action.payload;
@@ -82,6 +83,7 @@ const recipesReducer = createSlice({
       state.customRecipe.preparation = [];
       state.customRecipe.ingredients = [];
     },
+
     isRecipeSaved: (state, action) => {
       state.isSaved = action.payload;
     },

@@ -8,20 +8,21 @@ function Welcome(props) {
 
   return (
     <div className="welcome-container">
-      <h1 className="login-title">Click to start your journey!</h1>
+      <h1 className="welcome-title">Click to start your journey!</h1>
       <div className="btns">
         <Button
-          className="btn"
           onClick={() => navigate("/register")}
           variant="light"
+          type="submit"
+          className="bg-black"
         >
           Register
         </Button>
         <Button
+          className="bg-light text-black"
           onClick={() => navigate("/login")}
           type="submit"
-          className="btn"
-          variant="dark "
+          variant="dark"
         >
           Login
         </Button>
