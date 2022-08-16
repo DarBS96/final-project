@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveToken, isLogin } from "../Redux/features/registerSlice";
 import Button from "react-bootstrap/Button";
+const URL = `${process.env.REACT_APP_URL}/info/login`;
 
 function Login(props) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function Login(props) {
       //Send user login info to DB
       const data = await axios({
         method: "POST",
-        url: "http://localhost:3000/info/login",
+        url: URL,
         data: { username: isExist.username, password: isExist.password },
       });
       //Getting the token from the server
@@ -77,7 +78,7 @@ function Login(props) {
             <span className="login-text">Login</span>
           </Button>
         </form>
-        <Link className='register-link' to={"/register"}>
+        <Link className="register-link" to={"/register"}>
           Not registered yet? sign up!
         </Link>
       </div>
