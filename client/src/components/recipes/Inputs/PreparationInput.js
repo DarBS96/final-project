@@ -5,6 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { addPreparation } from "../../../Redux/features/recipesSlice";
 import { v4 as uuid } from "uuid";
 import { BsPlusCircle } from "react-icons/bs";
+import "../../.././css/input.css";
 
 function PreparationInput(props) {
   const id = uuid();
@@ -38,7 +39,7 @@ function PreparationInput(props) {
   return (
     <div className="mb-3 container d-flex">
       <div>
-        <InputGroup style={{ width: "420px" }}>
+        <InputGroup className={"preparation-input-group"}>
           <Form.Control
             type="number"
             placeholder="Number"

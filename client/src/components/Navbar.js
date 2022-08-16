@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { isLogin } from "../Redux/features/registerSlice";
+import { feelingName } from "../Redux/features/feelingSlice";
 
 function NavbarComp() {
   const dispatch = useDispatch();
@@ -28,34 +29,46 @@ function NavbarComp() {
                 My comments
               </Nav.Link>
               <NavDropdown title="Favorites" id="basic-nav-dropdown">
-                <Nav.Link
-                  className="dropdown-custom"
-                  as={Link}
-                  to={`/savedRecipes/1`}
-                >
-                  Romantic
-                </Nav.Link>
-                <Nav.Link
-                  className="dropdown-custom"
-                  as={Link}
-                  to={"/savedRecipes/3"}
-                >
-                  Tipsy
-                </Nav.Link>
-                <Nav.Link
-                  className="dropdown-custom"
-                  as={Link}
-                  to={"/savedRecipes/4"}
-                >
-                  Lonely
-                </Nav.Link>
-                <Nav.Link
-                  className="dropdown-custom"
-                  as={Link}
-                  to={"/savedRecipes/5"}
-                >
-                  Tense
-                </Nav.Link>
+                <NavDropdown.Item href={""}>
+                  <Nav.Link
+                    className="dropdown-custom"
+                    as={Link}
+                    to={`/savedRecipes/1`}
+                    onClick={() => dispatch(feelingName("Romantic"))}
+                  >
+                    Romantic
+                  </Nav.Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Nav.Link
+                    className="dropdown-custom"
+                    as={Link}
+                    to={"/savedRecipes/3"}
+                    onClick={() => dispatch(feelingName("Tipsy"))}
+                  >
+                    Tipsy
+                  </Nav.Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item href={""}>
+                  <Nav.Link
+                    className="dropdown-custom"
+                    as={Link}
+                    to={"/savedRecipes/4"}
+                    onClick={() => dispatch(feelingName("Lonely"))}
+                  >
+                    Lonely
+                  </Nav.Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item href={""}>
+                  <Nav.Link
+                    className="dropdown-custom"
+                    as={Link}
+                    to={"/savedRecipes/5"}
+                    onClick={() => dispatch(feelingName("Tense"))}
+                  >
+                    Tense
+                  </Nav.Link>
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link
                 className="ms-0 ms-lg-auto"

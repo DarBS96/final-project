@@ -77,7 +77,7 @@ function Login(props) {
             <span className="login-text">Login</span>
           </Button>
         </form>
-        <Link style={{ color: "black" }} to={"/register"}>
+        <Link className='register-link' to={"/register"}>
           Not registered yet? sign up!
         </Link>
       </div>

@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
+import "../../.././css/input.css";
 
-function Input({ label, type, id, placeholder, onChange, isRequired, accept }) {
+function Input({ label, type, id, placeholder, onChange, accept, value }) {
   return (
     <div>
       <Form.Group className="mb-3 container">
         <Form.Label>{label}</Form.Label>
         <Form.Control
-          style={{ width: "420px" }}
+          className="single-input"
           onChange={onChange}
           type={type}
           placeholder={placeholder}
           name={id}
-          // required
           id={id}
           autoComplete="off"
           accept={accept}
+          value={value}
         />
       </Form.Group>
     </div>

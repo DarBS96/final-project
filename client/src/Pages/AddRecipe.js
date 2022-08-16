@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import DisplayAddedItem from "../components/allToDisplay/DisplayAddedItem";
 import ".././css/customRecipe.css";
 import FileBase64 from "react-file-base64";
-import { isRecipeSaved } from "../Redux/features/recipesSlice";
 import DisplayModal from "../components/allToDisplay/DisplayModal";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/addingCustomRecipe`;
 
@@ -25,6 +24,7 @@ function AddRecipe(props) {
     (store) => store.recipesSlice.customRecipe
   );
   const [photo, setPhoto] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
   const { customRecipe } = useSelector((store) => store.recipesSlice);
@@ -49,7 +49,7 @@ function AddRecipe(props) {
         btnElement.disabled = false;
       };
     }
-  }, [values, ref]);
+  }, [values, showModal]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -62,8 +62,7 @@ function AddRecipe(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // dispatch(isRecipeSaved(false));
+    setShowModal(true);
     const data = await axios({
       method: "POST",
       url: URL,
@@ -76,8 +75,12 @@ function AddRecipe(props) {
         Authorization: token,
       },
     });
+
+    setValues(initialState);
     dispatch(restartIngredientsAndMethods());
-    // setValues({ title: "", description: "", author: "" });
+    setTimeout(() => {
+      setShowModal(false);
+    }, 3000);
   };
 
   return (
@@ -85,7 +88,7 @@ function AddRecipe(props) {
       <h3 className="main-title">Add your own {feelingName} recipe!</h3>
       <div className="customRecipe-container">
         <form
-          className="form-container"
+          className="form-container "
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
@@ -135,12 +138,12 @@ function AddRecipe(props) {
           <button
             disabled={true}
             ref={ref}
-            className="w-25 m-auto btn-add-recipe"
+            className="m-auto btn-add-recipe"
             type="submit"
           >
             Add recipe!
           </button>
-          {/* {!isSaved && <DisplayModal />} */}
+          {showModal && <DisplayModal />}
         </form>
       </div>
     </div>

@@ -11,7 +11,7 @@ function DisplaySavedRecipes(props) {
   const { feelingName } = useSelector((store) => store.feelingSlice);
   const dispatch = useDispatch();
   const [savedRecipes, setSavedRecipes] = useState([]);
-  const [isRecipeToDisplay, setIsResipeToDisplay] = useState(false);
+  const [isRecipeToDisplay, setIsRecipeToDisplay] = useState(false);
   let { feeling_id } = useParams();
   useEffect(() => {
     const getSavedRecipes = async () => {
@@ -26,7 +26,7 @@ function DisplaySavedRecipes(props) {
           Authorization: token,
         },
       });
-      if (data.data.filteredSavedRecipes < 1) setIsResipeToDisplay(true);
+      if (data.data.filteredSavedRecipes < 1) setIsRecipeToDisplay(true);
       setSavedRecipes(data.data.filteredSavedRecipes);
     };
     getSavedRecipes();

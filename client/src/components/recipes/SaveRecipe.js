@@ -70,12 +70,12 @@ function SaveRecipe({ recipe_id }) {
     }, 3000);
   };
   return (
-    <div>
+    <>
       <div onClick={handleClick} ref={ref} className="wrapped-heart">
         <BsHeart className="heart-save" />
       </div>
       {showModal && <DisplayModal />}
-    </div>
+    </>
   );
 }
 

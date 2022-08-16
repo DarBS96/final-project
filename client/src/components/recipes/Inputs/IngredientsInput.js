@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { addIngredients } from "../../../Redux/features/recipesSlice";
 import { v4 as uuid } from "uuid";
+import "../../.././css/input.css";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusCircle } from "react-icons/bs";
@@ -43,7 +44,7 @@ function IngredientsInput() {
   return (
     <div className="mb-3 container d-flex">
       <div>
-        <InputGroup style={{ width: "420px" }}>
+        <InputGroup className={"ingredient-input-group"}>
           <Form.Control
             name="name"
             placeholder="Name"
