@@ -28,11 +28,7 @@ function NavbarComp() {
               <Nav.Link as={Link} to={"/myComments"}>
                 My comments
               </Nav.Link>
-              <NavDropdown
-                className="w-50 m-auto"
-                title="Favorites"
-                id="basic-nav-dropdown"
-              >
+              <NavDropdown title="Favorites" id="basic-nav-dropdown">
                 <NavDropdown.Item
                   as={Link}
                   to={`/savedRecipes/1`}
