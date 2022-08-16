@@ -27,6 +27,6 @@
 
 @media (max-width: 575.98px) {
     .welcome-container {
-        object-fit: cover;
+        background-size: cover;
     }
 }
