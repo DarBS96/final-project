@@ -22,11 +22,11 @@ export const getAllComments = (req, res) => {
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).send("Token no longer valid");
-    //Display all comments in a ascending order
+    //Display all comments in descending order
     const comments = await db
       .table("comments")
       .select("*")
-      .orderBy("comment_date", "asc")
+      .orderBy("comment_date", "desc")
       .where({ recipe_id });
     res.send({ comments });
   });
