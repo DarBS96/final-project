@@ -29,7 +29,7 @@ function NavbarComp() {
                 My comments
               </Nav.Link>
               <NavDropdown title="Favorites" id="basic-nav-dropdown">
-                <NavDropdown.Item href={""}>
+                <NavDropdown.Item>
                   <Nav.Link
                     className="dropdown-custom"
                     as={Link}
@@ -49,7 +49,7 @@ function NavbarComp() {
                     Tipsy
                   </Nav.Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href={""}>
+                <NavDropdown.Item>
                   <Nav.Link
                     className="dropdown-custom"
                     as={Link}
@@ -59,7 +59,7 @@ function NavbarComp() {
                     Lonely
                   </Nav.Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href={""}>
+                <NavDropdown.Item>
                   <Nav.Link
                     className="dropdown-custom"
                     as={Link}
