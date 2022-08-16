@@ -12,16 +12,13 @@ import MyComments from "./Pages/MyComments";
 import AddRecipe from "./Pages/AddRecipe";
 import Recipe from "./Pages/Recipe";
 import VerifyToken from "./components/VerifyToken";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 //remove navbar when login by update the stor if i'm logging
 
 function App() {
   const isLogin = useSelector((store) => store.registerReducer.isLogin);
-  // const recipe_id = useSelector(
-  //   (store) => store.recipesSlice.recipes[0].recipe_id
-  // );
-  // console.log(recipe_id);
   return (
     <div className="App">
       <Router>

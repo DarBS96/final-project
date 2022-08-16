@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLogin } from "../Redux/features/registerSlice";
 
 function VerifyToken({ children }) {
+  const dispatch = useDispatch();
   const [isAuth, setIsAuth] = useState(null);
   const navigate = useNavigate();
   const token = useSelector((store) => store.registerReducer.token);
@@ -18,7 +20,10 @@ function VerifyToken({ children }) {
             Authorization: token,
           },
         });
-        if (data.status === 200) setIsAuth(true);
+        if (data.status === 200) {
+          setIsAuth(true);
+          dispatch(isLogin(true));
+        }
       } catch (err) {
         console.log(err);
         setIsAuth(false);

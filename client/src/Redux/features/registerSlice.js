@@ -8,7 +8,7 @@ const initialState = {
     email: "",
     password: "",
   },
-  token: "",
+  token: localStorage.getItem("token"),
   isLogin: false,
 };
 
@@ -19,7 +19,6 @@ const registerReducer = createSlice({
     getRegisterInfo: (state, action) => {
       state.userRegisterInfo = action.payload;
     },
-
     restartRegisterInfo: (state, action) => {
       state.userRegisterInfo = initialState.userRegisterInfo;
     },

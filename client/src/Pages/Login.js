@@ -34,6 +34,9 @@ function Login(props) {
       });
       //Getting the token from the server
       const { token } = data.data;
+
+      //Save token in local storage (cookie not working)
+      localStorage.setItem("token", token);
       dispatch(saveToken(token));
       dispatch(isLogin(true));
       navigate("/home");

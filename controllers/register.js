@@ -64,8 +64,8 @@ export const getUserLoginInfo = async (req, res) => {
     if (verifyPassword) {
       const userInfo = await getProperty("users", "user_id", { username });
       const userId = userInfo[0].user_id;
-      //create token
 
+      //create token
       const token = jwt.sign(
         { userId, username },
         process.env.ACCESS_TOKEN_SECRET,
@@ -77,7 +77,6 @@ export const getUserLoginInfo = async (req, res) => {
       res.cookie("token", "token", {
         httpOnly: true,
       });
-
       //Send back the token
       res.send({ token });
     } else {
