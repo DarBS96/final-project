@@ -28,7 +28,7 @@ function MyComments(props) {
   const deleteComment = async (comment_id) => {
     dispatch(setSelectedComment(comment_id));
     const data = await axios({
-      method: "POST",
+      method: "DELETE",
       url: URL,
       data: {
         comment_id,

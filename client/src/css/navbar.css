@@ -18,8 +18,8 @@ body {
     letter-spacing: 3px;
 }
 
-.dropdown-custom:hover {
-    background-color: #d3cedf;
+.nav-item:active {
+    background-color: white;
 }
 
 .nav-link:hover {

@@ -19,7 +19,7 @@ function NavbarComp() {
       <Navbar bg="light" expand="lg" collapseOnSelect="true">
         <Container className="navbar-container">
           <Navbar.Brand className="navbar-brand">FeelEat!</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav  " />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav ">
             <Nav className="me-auto w-100">
               <Nav.Link as={Link} to={"/home"}>
@@ -28,46 +28,46 @@ function NavbarComp() {
               <Nav.Link as={Link} to={"/myComments"}>
                 My comments
               </Nav.Link>
-              <NavDropdown title="Favorites" id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                  <Nav.Link
-                    className="dropdown-custom"
-                    as={Link}
-                    to={`/savedRecipes/1`}
-                    onClick={() => dispatch(feelingName("Romantic"))}
-                  >
-                    Romantic
-                  </Nav.Link>
+              <NavDropdown
+                className="w-50 m-auto"
+                title="Favorites"
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to={`/savedRecipes/1`}
+                  onClick={() => dispatch(feelingName("Romantic"))}
+                  href={"/"}
+                  className="nav-item dropdown-custom"
+                >
+                  Romantic
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Nav.Link
-                    className="dropdown-custom"
-                    as={Link}
-                    to={"/savedRecipes/3"}
-                    onClick={() => dispatch(feelingName("Tipsy"))}
-                  >
-                    Tipsy
-                  </Nav.Link>
+                <NavDropdown.Item
+                  as={Link}
+                  to={"/savedRecipes/3"}
+                  onClick={() => dispatch(feelingName("Tipsy"))}
+                  className=" dropdown-custom nav-item"
+                  href={"/"}
+                >
+                  Tipsy
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Nav.Link
-                    className="dropdown-custom"
-                    as={Link}
-                    to={"/savedRecipes/4"}
-                    onClick={() => dispatch(feelingName("Lonely"))}
-                  >
-                    Lonely
-                  </Nav.Link>
+                <NavDropdown.Item
+                  className="dropdown-custom nav-item"
+                  as={Link}
+                  to={"/savedRecipes/4"}
+                  onClick={() => dispatch(feelingName("Lonely"))}
+                  href={"/"}
+                >
+                  Lonely
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Nav.Link
-                    className="dropdown-custom"
-                    as={Link}
-                    to={"/savedRecipes/5"}
-                    onClick={() => dispatch(feelingName("Tense"))}
-                  >
-                    Tense
-                  </Nav.Link>
+                <NavDropdown.Item
+                  className="nav-item dropdown-custom"
+                  as={Link}
+                  to={"/savedRecipes/5"}
+                  onClick={() => dispatch(feelingName("Tense"))}
+                  href={"/"}
+                >
+                  Tense
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link

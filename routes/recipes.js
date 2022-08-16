@@ -29,7 +29,7 @@ routerRecipes.post("/recipes/savedRecipes", displayFilteredRecipesByFeelings);
 routerRecipes.post("/recipes/saveRecipe", saveRecipe);
 routerRecipes.post("/recipes/addingCustomRecipe", addingCustomRecipe);
 routerRecipes.get("/recipes/myComments", getMyComments);
-routerRecipes.post("/recipes/deleteComment", deleteComment);
-routerRecipes.post("/recipes/updateComment", UpdateComment);
+routerRecipes.delete("/recipes/deleteComment", deleteComment);
+routerRecipes.put("/recipes/updateComment", UpdateComment);
 
 export default routerRecipes;

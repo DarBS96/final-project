@@ -18,7 +18,7 @@ function UpdateComment(props) {
     dispatch(setEditDone(false));
     e.preventDefault();
     const data = await axios({
-      method: "POST",
+      method: "PUT",
       url: URL,
       data: {
         content,
