@@ -113,7 +113,6 @@ export const addingComment = (req, res, next) => {
 
 export const deleteComment = async (req, res) => {
   const { comment_id } = req.body;
-  console.log(comment_id);
   const token = req.headers.authorization;
   if (token == null) return res.status(401).send("Must send a token");
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {

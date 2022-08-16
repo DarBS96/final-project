@@ -14,8 +14,10 @@ function RecipesList(props) {
   const { feelingName } = useSelector((store) => store.feelingSlice);
 
   useEffect(() => {
+    console.log("hi");
     dispatch(getRecipes());
   }, []);
+  console.log(recipes);
   return (
     <div className="recipes-container">
       <h1 className="main-title-recipeList">
@@ -35,7 +37,7 @@ function RecipesList(props) {
       )}
 
       <div className="recipes-list-container container">
-        {recipes.map((recipe) => {
+        {recipes?.map((recipe) => {
           return <Recipe recipe={recipe} key={recipe.recipe_id} />;
         })}
       </div>

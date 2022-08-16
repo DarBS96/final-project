@@ -12,8 +12,9 @@ import db from "../database/connection.js";
 
 export const getRecipesFromDB = async (req, res) => {
   const { id } = req.headers;
-  console.log(id);
-  const recipes = await getProperty("recipes", "*", { fk_feeling_id: id });
+  const recipes = await getProperty("recipes", "*", {
+    fk_feeling_id: Number(id),
+  });
   res.send(recipes);
 };
 export const getAllComments = (req, res) => {
