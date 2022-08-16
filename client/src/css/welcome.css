@@ -8,7 +8,7 @@
     width: 100%;
     background-position: center;
     margin: auto;
-    height: 100vh;
+    height: 100%;
 }
 
 .welcome-title {
@@ -27,6 +27,6 @@
 
 @media (max-width: 575.98px) {
     .welcome-container {
-        width: 100%;
+        min-height: 667px;
     }
 }
