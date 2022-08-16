@@ -170,6 +170,7 @@
     .recipe-overview {
         width: 375px;
         margin: auto;
+        margin-top: 10px;
     }
     .main-title {
         font-size: 30px;
