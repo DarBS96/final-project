@@ -6,6 +6,7 @@ import PreparationInput from "../components/recipes/Inputs/PreparationInput";
 import {
   addRecipeFields,
   restartIngredientsAndMethods,
+  isRecipeSaved,
 } from "../Redux/features/recipesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import DisplayAddedItem from "../components/allToDisplay/DisplayAddedItem";
@@ -34,8 +35,8 @@ function AddRecipe(props) {
   );
   // const { isSaved } = useSelector((store) => store.recipesSlice);
   const ref = useRef();
-
   useEffect(() => {
+    const btnElement = ref.current;
     if (
       values.title &&
       values.description &&
@@ -43,11 +44,11 @@ function AddRecipe(props) {
       ingredients.length >= 1 &&
       preparation.length >= 1
     ) {
-      const btnElement = ref.current;
-
       return () => {
         btnElement.disabled = false;
       };
+    } else {
+      btnElement.disabled = true;
     }
   }, [values, showModal]);
   const handleChange = (e) => {
@@ -78,6 +79,7 @@ function AddRecipe(props) {
 
     setValues(initialState);
     dispatch(restartIngredientsAndMethods());
+    dispatch(isRecipeSaved(false));
     setTimeout(() => {
       setShowModal(false);
     }, 3000);

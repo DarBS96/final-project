@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { BsHeart } from "react-icons/bs";
+import { BsFillHeartFill } from "react-icons/bs";
 import DisplayModal from "../allToDisplay/DisplayModal";
 import { isRecipeSaved } from "../../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/saveRecipe`;
@@ -17,6 +17,7 @@ function SaveRecipe({ recipe_id }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    const btnElement = ref.current;
     const recipeIsSaved = async () => {
       const data = await axios({
         method: "POST",
@@ -34,23 +35,20 @@ function SaveRecipe({ recipe_id }) {
       if (data.data.recipeAlreadySaved) {
         setIsSaved(true);
         dispatch(isRecipeSaved(true));
+        btnElement.style.color = "red";
       } else {
-        setIsSaved(false);
         dispatch(isRecipeSaved(false));
       }
     };
     recipeIsSaved();
-
-    const btnElement = ref.current;
-    if (isSaved)
-      return () => {
-        btnElement.removeEventListener("click", handleClick);
-      };
-  }, [showModal]);
+    // if (isSaved)
+    //   return () => {
+    //     btnElement.removeEventListener("click", handleClick);
+    //   };
+  }, [isSaved, showModal]);
 
   const handleClick = async (e) => {
     setShowModal(true);
-    console.log(isSaved);
     if (!isSaved) {
       const data = await axios({
         method: "POST",
@@ -72,7 +70,7 @@ function SaveRecipe({ recipe_id }) {
   return (
     <>
       <div onClick={handleClick} ref={ref} className="wrapped-heart">
-        <BsHeart className="heart-save" />
+        <BsFillHeartFill className="heart-save" />
       </div>
       {showModal && <DisplayModal />}
     </>
