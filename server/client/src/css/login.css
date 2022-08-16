@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+.login-title {
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
+    letter-spacing: 4px;
+    margin-top: 25px;
+}
+
+.login-form-input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    width: 200px;
+    margin: auto;
+}
+
+.login-form-input:focus {
+    outline: none;
+}
+
+.register-link {
+    color: black;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.login-form {
+    box-shadow: 5px 5px 10px 1px #bcb7b7;
+    margin-top: 30px;
+    border-radius: 15px;
+    height: 250px;
+    margin-bottom: 30px;
+    background-color: #4b5d67;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputs-container {
+    height: 200px;
+    background-color: white;
+    border-radius: 15px;
+    /* margin-top: 30px; */
+    width: 300px;
+    padding: 25px;
+}
+
+.btn {
+    margin-top: 6px;
+    color: white;
+    background-color: #4b5d67;
+}
+
+.login-text {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* @media (max-width: 575.98px) {} */

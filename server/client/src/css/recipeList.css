@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Mouse+Memoirs&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+.recipes-container {
+    margin-top: 30px;
+    height: 100vh;
+}
+
+.recipes-list-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-title-recipeList {
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
+    letter-spacing: 4px;
+}
+
+.u-clearfix {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
+
+.series-frame {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid #eee;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.series-frame:hover {
+    background-color: #4b5d67;
+}
+
+.link-adding-customRecipe {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    width: 276px;
+    margin: auto;
+}
+
+.link-adding-customRecipe:hover {
+    color: white;
+}
+
+.subtle {
+    color: #aaa;
+}
+
+.card-container {
+    margin: 25px auto 0;
+    width: 350px;
+    /* height: 100vh; */
+}
+
+.card {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 5px rgba(75, 75, 75, 0.07);
+    z-index: 1;
+    height: 250px;
+    width: 350px;
+}
+
+.card-body {
+    height: 180px;
+    width: 150px;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-author {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    /* margin: 15px 0 0; */
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-family: "BhuTuka Expanded One", cursive;
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin: 5px 0;
+    letter-spacing: 4px;
+}
+
+.card-description {
+    /* font-weight: 300; */
+    /* line-height: 22px; */
+    /* padding-bottom: 25px; */
+    margin: 0;
+}
+
+.card-read {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: auto;
+}
+
+.card-media {
+    height: 180px;
+    width: 125px;
+}
+
+.card-shadow {
+    background-color: #fff;
+    box-shadow: 0 2px 25px 2px rgba(0, 0, 0, 1), 0 2px 50px 2px rgba(0, 0, 0, 1), 0 0 100px 3px rgba(0, 0, 0, 0.25);
+    margin: auto;
+    width: 80%;
+}
+
+@media (max-width: 575.98px) {
+    .recipes-container {
+        margin-top: 20px;
+    }
+    .recipes-list-container {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .main-title-recipeList {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,39 @@
+#star-toggle {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.on {
+    color: #000;
+}
+
+.off {
+    color: #ccc;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    /* margin-left: 50px; */
+    /* justify-content: center; */
+}
+
+.votes {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.horizontal {
+    width: 45%;
+    height: 0;
+}
+
+
+/* @media (max-width: 575.98px) {
+    .votes {
+        margin-right: 50px;
+        width: 20px;
+    }
+} */
