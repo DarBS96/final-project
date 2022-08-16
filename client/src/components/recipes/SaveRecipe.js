@@ -45,7 +45,7 @@ function SaveRecipe({ recipe_id }) {
     //   return () => {
     //     btnElement.removeEventListener("click", handleClick);
     //   };
-  }, [isSaved, showModal]);
+  }, [showModal]);
 
   const handleClick = async (e) => {
     setShowModal(true);
@@ -67,6 +67,7 @@ function SaveRecipe({ recipe_id }) {
       setShowModal(false);
     }, 3000);
   };
+  console.log(showModal);
   return (
     <>
       <div onClick={handleClick} ref={ref} className="wrapped-heart">
