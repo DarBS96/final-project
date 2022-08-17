@@ -182,7 +182,7 @@
         width: 150px;
         padding: 0px;
         margin-right: 25px;
-        margin-top: 5px;
+        margin-top: 15px;
     }
     .description-title-wrapper {
         margin-right: 30px;
@@ -204,9 +204,9 @@
     .recipe-overview {
         background-image: -webkit-linear-gradient(77deg, #60737e 76%, white 59%);
     }
-    /* .section-one {
-        min-height: 200px;
-    } */
+    .section-one {
+        min-height: 280px;
+    }
     .section-two {
         display: flex;
         flex-direction: column;
@@ -244,6 +244,7 @@
         /* margin-right: 15px;
         margin-bottom: 3px; */
         margin: auto;
+        text-align: center;
     }
     .views {
         margin-left: 180px;
