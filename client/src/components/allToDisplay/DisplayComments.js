@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { showAllComments } from "../../Redux/features/commentSlice";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+// import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
 import Comment from "../recipes/comments/Comment";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/showAllComments`;
 
@@ -16,6 +17,8 @@ function DisplayComments(props) {
   const [isComment, setIsComment] = useState(false);
 
   useEffect(() => {
+    // console.log(selectedRecipe);
+    // dispatch(setSelectedRecipe());
     const { recipe_id } = selectedRecipe;
 
     const getAllRecipeComments = async () => {

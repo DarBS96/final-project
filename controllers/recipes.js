@@ -19,6 +19,14 @@ export const getRecipesFromDB = async (req, res) => {
     .where({ fk_feeling_id: Number(id) });
   res.send(recipes);
 };
+
+export const getRecipeFromDB = async (req, res) => {
+  console.log(req.headers);
+  const { recipe_id } = req.headers;
+  console.log(recipe_id);
+  const recipe = getProperty("recipes", "*", Number(recipe_id));
+  res.send({ recipe });
+};
 export const getAllComments = (req, res) => {
   const token = req.headers.authorization;
   const { recipe_id } = req.body;

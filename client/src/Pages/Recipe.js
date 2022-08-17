@@ -5,29 +5,14 @@ import StarRating from "../components/recipes/Inputs/StarRating";
 import DisplayComments from "../components//allToDisplay/DisplayComments";
 import SaveRecipe from "../components/recipes/SaveRecipe";
 import ".././css/singleRecipe.css";
-import { recipeViews } from "../Redux/features/recipesSlice";
-import axios from "axios";
+// import { recipeViews } from "../Redux/features/recipesSlice";
+// import axios from "axios";
+// import { setSelectedRecipe } from "../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
 
 function Recipe(props) {
   const dispatch = useDispatch();
-  const { selectedRecipeId, selectedRecipe, views } = useSelector(
-    (store) => store.recipesSlice
-  );
-  useEffect(() => {
-    const getSelectedRecipe = async () => {
-      const data = await axios({
-        method: "POST",
-        url: URL,
-        data: {
-          recipe_id: selectedRecipeId,
-        },
-      });
-      dispatch(recipeViews(data.data.views));
-    };
-    getSelectedRecipe();
-  }, []);
-  console.log(selectedRecipe);
+  const { views, selectedRecipe } = useSelector((store) => store.recipesSlice);
   const {
     title,
     preparation,

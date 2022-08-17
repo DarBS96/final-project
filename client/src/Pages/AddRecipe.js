@@ -115,6 +115,14 @@ function AddRecipe(props) {
             onChange={handleChange}
             value={values.description}
           />
+
+          <Input
+            type={"text"}
+            id={"author"}
+            placeholder={"Made with love by Dana Cohen"}
+            onChange={handleChange}
+            value={values.author}
+          />
           <div className="file-container">
             <p className="p-customRecipe">upload recipe image</p>
             <div className="file">
@@ -128,14 +136,6 @@ function AddRecipe(props) {
               />
             </div>
           </div>
-
-          <Input
-            type={"text"}
-            id={"author"}
-            placeholder={"Made with love by Dana Cohen"}
-            onChange={handleChange}
-            value={values.author}
-          />
           <button
             disabled={true}
             ref={ref}

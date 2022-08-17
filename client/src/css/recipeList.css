@@ -24,6 +24,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 5px;
+    min-height: 280px;
 }
 
 .series-frame {
@@ -61,7 +62,6 @@
 .card-container {
     margin: 25px auto 0;
     width: 350px;
-    /* height: 100vh; */
 }
 
 .card {

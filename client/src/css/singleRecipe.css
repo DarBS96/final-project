@@ -10,7 +10,7 @@
 .recipe-overview {
     width: 800px;
     background-color: #e4e9fd;
-    background-image: -webkit-linear-gradient(70deg, #60737e 55%, white 55%);
+    background-image: -webkit-linear-gradient(78deg, #60737e 64%, white 20%);
     min-height: 800px;
     font-family: "helvetica neue";
     display: flex;
@@ -174,7 +174,8 @@
         margin-top: 10px;
     }
     .main-title {
-        font-size: 30px;
+        font-size: 20px;
+        font-weight: bold;
     }
     .recipe-img {
         height: 160px;
@@ -203,6 +204,9 @@
     .recipe-overview {
         background-image: -webkit-linear-gradient(77deg, #60737e 76%, white 59%);
     }
+    /* .section-one {
+        min-height: 200px;
+    } */
     .section-two {
         display: flex;
         flex-direction: column;
@@ -211,6 +215,8 @@
     }
     .preparation-container {
         margin-left: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
         padding: 0;
         margin-top: 20px;
     }

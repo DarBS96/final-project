@@ -16,10 +16,12 @@ import {
   saveRecipe,
   addingCustomRecipe,
   getMyComments,
+  // getRecipeFromDB,
 } from "../controllers/recipes.js";
 import { authenticateToken } from "../middleware/auth.js";
 
 routerRecipes.get("/recipes", authenticateToken, getRecipesFromDB);
+// routerRecipes.get("/recipe", getRecipeFromDB);
 routerRecipes.post("/recipes/rating", addingRating);
 routerRecipes.post("/recipes/rating/average", getRatingsAvg);
 routerRecipes.post("/recipes/views", addingViews);

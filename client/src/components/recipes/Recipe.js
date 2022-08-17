@@ -1,19 +1,32 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import {
-//   selectedRecipe,
-//   recipeViews,
-//   setSelectedRecipeId,
-// } from "../../Redux/features/recipesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import "../.././css/recipeList.css";
+// import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
+import axios from "axios";
+import { recipeViews } from "../../Redux/features/recipesSlice";
+const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
 
 function Recipe({ recipe }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { title, img, recipe_id, author, description } = recipe;
+
+  // const { views } = useSelector((store) => store.recipesSlice);
+
   const handleClick = async (e) => {
-    localStorage.setItem("recipe_id", JSON.stringify(recipe_id));
+    localStorage.setItem("recipe_id", recipe_id);
     localStorage.setItem("recipe", JSON.stringify(recipe));
+    const recipeId = Number(localStorage.getItem("recipe_id"));
+    const data = await axios({
+      method: "POST",
+      url: URL,
+      data: {
+        recipe_id: recipeId,
+      },
+    });
+    // dispatch(setSelectedRecipe());
+    dispatch(recipeViews(data.data.views));
     navigate(`/chosenRecipe`);
   };
 
@@ -24,7 +37,7 @@ function Recipe({ recipe }) {
           <div className="card-body">
             <span className="card-author subtle">{author}</span>
             <h2 className="card-title">{title}</h2>
-            <p className="card-description subtle">{description}</p>
+            {/* <p className="card-description subtle">{description}</p> */}
             <div className="card-read" onClick={handleClick}>
               Read
             </div>

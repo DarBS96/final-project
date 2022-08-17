@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes`;
 
-const recipe_id = JSON.parse(localStorage.getItem("recipe_id"));
-const recipe = JSON.parse(localStorage.getItem("recipe"));
-
 const initialState = {
   recipes: [],
   isLoading: true,
@@ -16,8 +13,7 @@ const initialState = {
     preparation: [],
   },
   isSaved: false,
-  selectedRecipe: recipe,
-  selectedRecipeId: recipe_id,
+  selectedRecipe: JSON.parse(localStorage.getItem("recipe")) || {},
 };
 
 export const getRecipes = createAsyncThunk(
@@ -48,12 +44,14 @@ const recipesReducer = createSlice({
   name: "recipes",
   initialState,
   reducers: {
-    selectedRecipe: (state, action) => {
-      state.selectedRecipe = action.payload;
-    },
-    setSelectedRecipeId: (state, action) => {
-      state.selectedRecipeId = action.payload;
-    },
+    // setSelectedRecipe: (state, action) => {
+    //   state.selectedRecipe = ;
+    // },
+    // setSelectedRecipeId: (state, action) => {
+    //   const recipe_id = Number(localStorage.getItem("recipe_id"));
+    //   // console.log(recipe_id);
+    //   state.selectedRecipeId = recipe_id;
+    // },
     recipeViews: (state, action) => {
       state.views = action.payload;
     },
@@ -110,7 +108,7 @@ const recipesReducer = createSlice({
 
 export const {
   ratingAvg,
-  selectedRecipe,
+  // setSelectedRecipe,
   recipeViews,
   showAllComments,
   refreshComments,
@@ -123,7 +121,7 @@ export const {
   restartIngredientsAndMethods,
   setVotes,
   isRecipeSaved,
-  setSelectedRecipeId,
+  // setSelectedRecipeId,
 } = recipesReducer.actions;
 
 export default recipesReducer.reducer;

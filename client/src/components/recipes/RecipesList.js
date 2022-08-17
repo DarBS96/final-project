@@ -6,21 +6,25 @@ import { Link } from "react-router-dom";
 import Recipe from "./Recipe";
 import Spinner from "react-bootstrap/Spinner";
 import "../../css/recipeList.css";
+import {
+  selectedFeeling,
+  feelingName,
+} from "../../Redux/features/feelingSlice";
 
 function RecipesList(props) {
   const dispatch = useDispatch();
   const { recipes, isLoading } = useSelector((store) => store.recipesSlice);
-  const { feelingName } = useSelector((store) => store.feelingSlice);
+  const name = useSelector((store) => store.feelingSlice.feelingName);
 
   useEffect(() => {
-    console.log("hi");
+    dispatch(selectedFeeling());
+    dispatch(feelingName());
     dispatch(getRecipes());
   }, []);
-  console.log(recipes);
   return (
     <div className="recipes-container">
       <h1 className="main-title-recipeList">
-        Here you can find all of {feelingName} recipes!
+        Here you can find all of {name} recipes!
       </h1>
       {isLoading && (
         <Spinner animation="border" role="status">

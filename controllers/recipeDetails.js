@@ -81,6 +81,7 @@ export const getRatingsAvg = async (req, res) => {
 
 export const addingViews = async (req, res, next) => {
   const { recipe_id } = req.body;
+  console.log(recipe_id);
   //get The views property
   const getViews = await getProperty("recipes", "views", { recipe_id });
   // update it

@@ -4,15 +4,11 @@ import axios from "axios";
 
 const URL = `${process.env.REACT_APP_URL}/feelingEat`;
 
-//Get the selected feeling from the local storage and configure as initial state when refresh the page
-const feelingId = JSON.parse(localStorage.getItem("feeling")).selectedFeeling;
-const feelingText = JSON.parse(localStorage.getItem("feeling")).feelingName;
-
 const initialState = {
   feelings: [],
   isLoading: true,
-  selectedFeeling: feelingId || "",
-  feelingName: feelingText || "",
+  selectedFeeling: "",
+  feelingName: "",
 };
 
 export const getFeelings = createAsyncThunk(
@@ -40,10 +36,17 @@ const feelingReducer = createSlice({
   initialState,
   reducers: {
     selectedFeeling: (state, action) => {
-      state.selectedFeeling = action.payload;
+      const feelingId = JSON.parse(
+        localStorage.getItem("feeling")
+      ).selectedFeeling;
+      state.selectedFeeling = feelingId;
     },
     feelingName: (state, action) => {
-      state.feelingName = action.payload;
+      const feelingText = JSON.parse(
+        localStorage.getItem("feeling")
+      ).feelingName;
+
+      state.feelingName = feelingText;
     },
   },
   extraReducers: {

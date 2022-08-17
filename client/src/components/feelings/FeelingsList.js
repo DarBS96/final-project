@@ -26,8 +26,8 @@ function FeelingsList(props) {
         feelingName: textContent,
       })
     );
-    dispatch(selectedFeeling(Number(id)));
-    dispatch(feelingName(textContent));
+    dispatch(selectedFeeling());
+    dispatch(feelingName());
     navigate(`/recipes`);
   };
 
