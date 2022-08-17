@@ -6,7 +6,7 @@ function Input({ label, type, id, placeholder, onChange, accept, value }) {
   return (
     <div>
       <Form.Group className="mb-3 container">
-        <Form.Label>{label}</Form.Label>
+        <Form.Label className="p-customRecipe">{label}</Form.Label>
         <Form.Control
           className="single-input"
           onChange={onChange}

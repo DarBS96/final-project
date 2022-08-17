@@ -5,11 +5,29 @@ import StarRating from "../components/recipes/Inputs/StarRating";
 import DisplayComments from "../components//allToDisplay/DisplayComments";
 import SaveRecipe from "../components/recipes/SaveRecipe";
 import ".././css/singleRecipe.css";
+import { recipeViews } from "../Redux/features/recipesSlice";
+import axios from "axios";
+const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
+
 function Recipe(props) {
-  const { selectedRecipe, views, comments, isSaved } = useSelector(
+  const dispatch = useDispatch();
+  const { selectedRecipeId, selectedRecipe, views } = useSelector(
     (store) => store.recipesSlice
   );
-
+  useEffect(() => {
+    const getSelectedRecipe = async () => {
+      const data = await axios({
+        method: "POST",
+        url: URL,
+        data: {
+          recipe_id: selectedRecipeId,
+        },
+      });
+      dispatch(recipeViews(data.data.views));
+    };
+    getSelectedRecipe();
+  }, []);
+  console.log(selectedRecipe);
   const {
     title,
     preparation,
@@ -37,12 +55,12 @@ function Recipe(props) {
             <StarRating recipe_id={recipe_id} />
           </div>
         </section>
-
+        <SaveRecipe recipe_id={recipe_id} />
         <section className="section-two ">
           <div className="ingredients-container">
             <h2 className="ingredients-title title">Ingredients</h2>
             {ingredients
-              .map((ingredient) => JSON.parse(ingredient))
+              ?.map((ingredient) => JSON.parse(ingredient))
               .map((ingredient, idx) => {
                 return (
                   <div key={idx} className="ingredient">
@@ -54,7 +72,7 @@ function Recipe(props) {
           <div className="preparation-container">
             <h2 className="preparation-title title">Preparation</h2>
             {preparation
-              .map((preparation) => JSON.parse(preparation))
+              ?.map((preparation) => JSON.parse(preparation))
               .map((preparation, idx) => {
                 return (
                   <div key={idx} className="preparation">
@@ -63,9 +81,8 @@ function Recipe(props) {
                 );
               })}
           </div>
-          <SaveRecipe recipe_id={recipe_id} />
-          <div className="author">{author}</div>
         </section>
+        <div className="author">{author}</div>
       </div>
 
       <div className="comments-container ">

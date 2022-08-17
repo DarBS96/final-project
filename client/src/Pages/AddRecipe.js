@@ -38,6 +38,7 @@ function AddRecipe(props) {
   useEffect(() => {
     const btnElement = ref.current;
     if (
+      photo &&
       values.title &&
       values.description &&
       values.author &&
@@ -50,7 +51,7 @@ function AddRecipe(props) {
     } else {
       btnElement.disabled = true;
     }
-  }, [values, showModal]);
+  }, [values, showModal, photo]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -96,7 +97,6 @@ function AddRecipe(props) {
         >
           <Input
             type={"text"}
-            // label={"Title"}
             id={"title"}
             placeholder={"Best Pizza ever!"}
             onChange={handleChange}
@@ -111,15 +111,16 @@ function AddRecipe(props) {
               "Here you can dedicate the recipe, describe how you feel, why you chose this recipe et cetera.."
             }
             id={"description"}
-            placeholder={"For my husband that in love with this pizza"}
+            placeholder={"For my fav girl"}
             onChange={handleChange}
             value={values.description}
           />
           <div className="file-container">
-            <p>upload recipe image</p>
+            <p className="p-customRecipe">upload recipe image</p>
             <div className="file">
               <FileBase64
                 type="file"
+                name="photo"
                 multiple={false}
                 onDone={(file) => {
                   setPhoto(file.base64);
@@ -130,13 +131,11 @@ function AddRecipe(props) {
 
           <Input
             type={"text"}
-            // label={"Author"}
             id={"author"}
-            placeholder={"Made with love by Johanna Cohen"}
+            placeholder={"Made with love by Dana Cohen"}
             onChange={handleChange}
             value={values.author}
           />
-          <br />
           <button
             disabled={true}
             ref={ref}

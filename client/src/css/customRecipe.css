@@ -16,6 +16,15 @@ input[type="file"] {
     margin: auto;
 }
 
+
+/* .li-container {
+    width: 450px;
+} */
+
+.p-customRecipe {
+    font-weight: bolder;
+}
+
 input[type="file"]::file-selector-button {
     background-color: #a2b5bb;
     border: none;
@@ -65,10 +74,11 @@ input[type="file"]::file-selector-button {
         margin-bottom: 5px;
     }
     input[type="file"] {
-        margin: 0;
+        margin: auto;
+        width: 300px;
     }
     .li-container {
-        width: 280px;
+        width: 300px;
         margin: 0;
     }
 }

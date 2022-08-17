@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Recipe from "./Recipe";
 import Spinner from "react-bootstrap/Spinner";
-
 import "../../css/recipeList.css";
 
 function RecipesList(props) {
@@ -14,10 +13,10 @@ function RecipesList(props) {
   const { feelingName } = useSelector((store) => store.feelingSlice);
 
   useEffect(() => {
-    // console.log("hi");
+    console.log("hi");
     dispatch(getRecipes());
   }, []);
-  // console.log(recipes);
+  console.log(recipes);
   return (
     <div className="recipes-container">
       <h1 className="main-title-recipeList">

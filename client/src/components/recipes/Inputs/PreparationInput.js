@@ -42,7 +42,7 @@ function PreparationInput(props) {
         <InputGroup className={"preparation-input-group"}>
           <Form.Control
             type="number"
-            placeholder="Number"
+            placeholder="Step 1"
             onChange={handleChange}
             name="number"
             value={values.number}

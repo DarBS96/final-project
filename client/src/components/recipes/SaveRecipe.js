@@ -67,7 +67,6 @@ function SaveRecipe({ recipe_id }) {
       setShowModal(false);
     }, 3000);
   };
-  console.log(showModal);
   return (
     <>
       <div onClick={handleClick} ref={ref} className="wrapped-heart">

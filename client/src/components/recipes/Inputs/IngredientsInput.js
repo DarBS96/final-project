@@ -32,7 +32,7 @@ function IngredientsInput() {
   //Reacting kike submit inside form group
   const handleClick = (e) => {
     e.preventDefault();
-    if (!values.name || !values.amount) {
+    if (!values.name) {
       setIsValid(false);
     } else {
       setIsValid(true);

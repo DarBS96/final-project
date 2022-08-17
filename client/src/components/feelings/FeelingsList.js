@@ -18,8 +18,14 @@ function FeelingsList(props) {
   }, []);
 
   const handleClick = (e) => {
-    //name attribute doesn't working for some reason
     const { id, textContent } = e.target;
+    localStorage.setItem(
+      "feeling",
+      JSON.stringify({
+        selectedFeeling: Number(id),
+        feelingName: textContent,
+      })
+    );
     dispatch(selectedFeeling(Number(id)));
     dispatch(feelingName(textContent));
     navigate(`/recipes`);
