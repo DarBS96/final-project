@@ -11,8 +11,8 @@ const feelingText = JSON.parse(localStorage.getItem("feeling")).feelingName;
 const initialState = {
   feelings: [],
   isLoading: true,
-  selectedFeeling: feelingId,
-  feelingName: feelingText,
+  selectedFeeling: feelingId || "",
+  feelingName: feelingText || "",
 };
 
 export const getFeelings = createAsyncThunk(
