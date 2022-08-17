@@ -20,7 +20,7 @@ function MyComments(props) {
   );
   const { isEditDone } = useSelector((store) => store.commentSlice);
   const { comments } = useSelector((store) => store.commentSlice);
-
+  const [commentBody, setCommentBody] = useState("");
   useEffect(() => {
     dispatch(getComments());
   }, []);
@@ -41,14 +41,15 @@ function MyComments(props) {
       dispatch(getComments());
     }, 1000);
   };
-  const updateComment = async (comment_id) => {
-    dispatch(setSelectedComment(comment_id));
+  const updateComment = async (comment) => {
+    dispatch(setSelectedComment(comment.comment_id));
     dispatch(setEditDone(true));
+    setCommentBody(comment.comment_body);
   };
   return (
     <div className="my-comments-container">
       <h1 className="my-comments-title">Edit my comments</h1>
-      {isEditDone && <UpdateComment />}
+      {isEditDone && <UpdateComment placeholder={commentBody} />}
       {comments.length >= 1 ? (
         comments.map((comment, idx) => {
           return (
@@ -59,7 +60,7 @@ function MyComments(props) {
             >
               <div className="edit-delete-wrapper">
                 <BsFillPencilFill
-                  onClick={(e) => updateComment(comment.comment_id)}
+                  onClick={(e) => updateComment(comment)}
                   className="edit-comment"
                 />
                 <BsTrash

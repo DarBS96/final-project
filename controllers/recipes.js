@@ -12,9 +12,11 @@ import db from "../database/connection.js";
 
 export const getRecipesFromDB = async (req, res) => {
   const { id } = req.headers;
-  const recipes = await getProperty("recipes", "*", {
-    fk_feeling_id: Number(id),
-  });
+  const recipes = await db
+    .table("recipes")
+    .select("*")
+    .orderBy("recipe_id", "desc")
+    .where({ fk_feeling_id: Number(id) });
   res.send(recipes);
 };
 export const getAllComments = (req, res) => {
@@ -27,7 +29,7 @@ export const getAllComments = (req, res) => {
     const comments = await db
       .table("comments")
       .select("*")
-      .orderBy("comment_date", "desc")
+      .orderBy("comment_id", "desc")
       .where({ recipe_id });
     res.send({ comments });
   });

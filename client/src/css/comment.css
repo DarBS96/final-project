@@ -101,8 +101,9 @@
 
 @media (max-width: 575.98px) {
     .comments-container {
-        margin-right: 0px;
+        margin-right: 0;
         gap: 0;
+        margin-top: 0;
     }
     .comment .comment-box {
         width: 350px;
@@ -113,6 +114,7 @@
         margin: auto;
     }
     .comment-form .form input[type="submit"] {
-        margin-top: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }

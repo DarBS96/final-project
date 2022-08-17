@@ -4,9 +4,10 @@ import { getComments, setEditDone } from "../../../Redux/features/commentSlice";
 import { useSelector, useDispatch } from "react-redux";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/updateComment`;
 
-function UpdateComment(props) {
+function UpdateComment({ placeholder }) {
   const token = useSelector((store) => store.registerReducer.token);
   const comment_id = useSelector((store) => store.commentSlice.selectedComment);
+
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
 
@@ -40,7 +41,7 @@ function UpdateComment(props) {
         <div className="form-row">
           <textarea
             className="input"
-            placeholder="Edit comment..."
+            placeholder={placeholder}
             required
             value={content}
             name="content"

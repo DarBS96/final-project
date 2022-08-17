@@ -14,10 +14,10 @@ function RecipesList(props) {
   const { feelingName } = useSelector((store) => store.feelingSlice);
 
   useEffect(() => {
-    console.log("hi");
+    // console.log("hi");
     dispatch(getRecipes());
   }, []);
-  console.log(recipes);
+  // console.log(recipes);
   return (
     <div className="recipes-container">
       <h1 className="main-title-recipeList">

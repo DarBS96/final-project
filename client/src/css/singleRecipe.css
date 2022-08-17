@@ -67,12 +67,6 @@
     margin-top: 15px;
 }
 
-
-/* .rating-container {
-    margin-top: 0;
-    width: 150px;
-} */
-
 .views {
     text-align: center;
     margin-bottom: 3px;
@@ -123,10 +117,6 @@
 .wrapped-heart:hover {
     background-color: #d5bbc4;
 }
-
-
-/* .ingredients-container {
-} */
 
 .preparation-container {
     margin-left: 58px;
@@ -232,5 +222,6 @@
     }
     .author {
         margin-right: 15px;
+        margin-bottom: 3px;
     }
 }

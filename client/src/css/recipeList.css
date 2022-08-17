@@ -132,11 +132,15 @@
     }
     .recipes-list-container {
         display: flex;
-        gap: 10px;
         justify-content: center;
         flex-direction: column;
+        gap: 0px;
     }
     .main-title-recipeList {
         font-size: 30px;
+    }
+    .card-container {
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 }
