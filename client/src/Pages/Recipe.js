@@ -5,14 +5,12 @@ import StarRating from "../components/recipes/Inputs/StarRating";
 import DisplayComments from "../components//allToDisplay/DisplayComments";
 import SaveRecipe from "../components/recipes/SaveRecipe";
 import ".././css/singleRecipe.css";
-// import { recipeViews } from "../Redux/features/recipesSlice";
-// import axios from "axios";
-// import { setSelectedRecipe } from "../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
 
 function Recipe(props) {
   const dispatch = useDispatch();
   const { views, selectedRecipe } = useSelector((store) => store.recipesSlice);
+  console.log(selectedRecipe);
   const {
     title,
     preparation,
@@ -61,7 +59,7 @@ function Recipe(props) {
               .map((preparation, idx) => {
                 return (
                   <div key={idx} className="preparation">
-                    <p>{`${preparation.number}. ${preparation.method} `}</p>
+                    <p className="li-preparation">{`${preparation.number}. ${preparation.method} `}</p>
                   </div>
                 );
               })}

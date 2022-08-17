@@ -44,9 +44,9 @@ const recipesReducer = createSlice({
   name: "recipes",
   initialState,
   reducers: {
-    // setSelectedRecipe: (state, action) => {
-    //   state.selectedRecipe = ;
-    // },
+    setSelectedRecipe: (state, action) => {
+      state.selectedRecipe = action.payload;
+    },
     // setSelectedRecipeId: (state, action) => {
     //   const recipe_id = Number(localStorage.getItem("recipe_id"));
     //   // console.log(recipe_id);
@@ -108,7 +108,7 @@ const recipesReducer = createSlice({
 
 export const {
   ratingAvg,
-  // setSelectedRecipe,
+  setSelectedRecipe,
   recipeViews,
   showAllComments,
   refreshComments,

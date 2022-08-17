@@ -1,8 +1,8 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "../.././css/recipeList.css";
-// import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
+import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
 import axios from "axios";
 import { recipeViews } from "../../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/views`;
@@ -12,9 +12,8 @@ function Recipe({ recipe }) {
   const dispatch = useDispatch();
   const { title, img, recipe_id, author, description } = recipe;
 
-  // const { views } = useSelector((store) => store.recipesSlice);
-
   const handleClick = async (e) => {
+    dispatch(setSelectedRecipe(recipe));
     localStorage.setItem("recipe_id", recipe_id);
     localStorage.setItem("recipe", JSON.stringify(recipe));
     const recipeId = Number(localStorage.getItem("recipe_id"));
@@ -25,7 +24,6 @@ function Recipe({ recipe }) {
         recipe_id: recipeId,
       },
     });
-    // dispatch(setSelectedRecipe());
     dispatch(recipeViews(data.data.views));
     navigate(`/chosenRecipe`);
   };
