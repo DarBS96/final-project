@@ -14,6 +14,7 @@ input[type="file"] {
     background-color: white;
     border-radius: 5px;
     margin: auto;
+    margin-bottom: 15px;
 }
 
 
@@ -77,6 +78,7 @@ input[type="file"]::file-selector-button {
     input[type="file"] {
         margin: auto;
         width: 300px;
+        margin-bottom: 10px;
     }
     .li-container {
         width: 300px;
