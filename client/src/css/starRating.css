@@ -18,6 +18,7 @@
     align-items: center;
     /* margin-left: 50px; */
     /* justify-content: center; */
+    cursor: pointer;
 }
 
 .votes {

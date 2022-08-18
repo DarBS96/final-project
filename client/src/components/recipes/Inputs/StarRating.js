@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ratingAvg, setVotes } from "../../../Redux/features/recipesSlice";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
-// import { setSelectedRecipe } from "../../../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
 
 const StarRating = ({ recipe_id }) => {
@@ -15,7 +14,6 @@ const StarRating = ({ recipe_id }) => {
   const [value, setValue] = useState(ratingsAvg);
   const [ratingIsExist, setRatingIsExist] = useState(false);
   useEffect(() => {
-    // dispatch(setSelectedRecipe());
     const getRatingAvg = async () => {
       const data = await axios({
         method: "POST",

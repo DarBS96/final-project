@@ -4,7 +4,6 @@ import axios from "axios";
 import { BsFillHeartFill } from "react-icons/bs";
 import DisplayModal from "../allToDisplay/DisplayModal";
 import { isRecipeSaved } from "../../Redux/features/recipesSlice";
-// import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/saveRecipe`;
 
 function SaveRecipe({ recipe_id }) {
@@ -43,10 +42,6 @@ function SaveRecipe({ recipe_id }) {
       }
     };
     recipeIsSaved();
-    // if (isSaved)
-    //   return () => {
-    //     btnElement.removeEventListener("click", handleClick);
-    //   };
   }, [showModal]);
 
   const handleClick = async (e) => {

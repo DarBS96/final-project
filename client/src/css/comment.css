@@ -99,6 +99,13 @@
     transition: 350ms box-shadow;
 }
 
+.noComment-p {
+    font-weight: bold;
+    font-size: 25px;
+    text-shadow: 2px 2px #b5758a;
+    text-align: center;
+}
+
 @media (max-width: 575.98px) {
     .comments-container {
         margin-right: 0;

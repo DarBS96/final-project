@@ -11,7 +11,7 @@ function Recipe({ recipe }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { title, img, recipe_id, author, description } = recipe;
-
+  const token = useSelector((store) => store.registerReducer.token);
   const handleClick = async (e) => {
     dispatch(setSelectedRecipe(recipe));
     localStorage.setItem("recipe_id", recipe_id);
@@ -22,6 +22,9 @@ function Recipe({ recipe }) {
       url: URL,
       data: {
         recipe_id: recipeId,
+      },
+      headers: {
+        Authorization: token,
       },
     });
     dispatch(recipeViews(data.data.views));

@@ -32,7 +32,11 @@ function DisplayComments(props) {
           Authorization: token,
         },
       });
-      if (data.data.comments.length >= 1) setIsComment(true);
+      if (data.data.comments.length >= 1) {
+        setIsComment(true);
+      } else {
+        setIsComment(false);
+      }
       dispatch(
         showAllComments({
           comments: data.data.comments,
@@ -45,12 +49,14 @@ function DisplayComments(props) {
 
   return (
     <>
-      {isComment && (
+      {isComment ? (
         <div className="comments-container">
           {comments?.map((comment, idx) => {
             return <Comment key={idx} comment={comment} />;
           })}
         </div>
+      ) : (
+        <p className="noComment-p">Be the first to Add Comment!</p>
       )}
     </>
   );
