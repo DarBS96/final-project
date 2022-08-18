@@ -14,6 +14,10 @@ svg {
     margin-top: 80px;
 }
 
+circle {
+    cursor: pointer;
+}
+
 svg.happy .face {
     -webkit-animation: upAndDown 0.8s ease infinite;
     animation: upAndDown 0.8s ease infinite;
