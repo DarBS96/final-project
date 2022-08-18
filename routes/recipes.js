@@ -22,16 +22,32 @@ import { authenticateToken } from "../middleware/auth.js";
 
 routerRecipes.get("/recipes", authenticateToken, getRecipesFromDB);
 // routerRecipes.get("/recipe", getRecipeFromDB);
-routerRecipes.post("/recipes/rating", addingRating);
-routerRecipes.post("/recipes/rating/average", getRatingsAvg);
-routerRecipes.post("/recipes/views", addingViews);
-routerRecipes.post("/recipes/comment", addingComment);
-routerRecipes.post("/recipes/showAllComments", getAllComments);
-routerRecipes.post("/recipes/savedRecipes", displayFilteredRecipesByFeelings);
-routerRecipes.post("/recipes/saveRecipe", saveRecipe);
-routerRecipes.post("/recipes/addingCustomRecipe", addingCustomRecipe);
-routerRecipes.get("/recipes/myComments", getMyComments);
-routerRecipes.delete("/recipes/deleteComment", deleteComment);
-routerRecipes.put("/recipes/updateComment", UpdateComment);
+routerRecipes.post("/recipes/rating", authenticateToken, addingRating);
+routerRecipes.post("/recipes/rating/average", authenticateToken, getRatingsAvg);
+routerRecipes.post("/recipes/views", authenticateToken, addingViews);
+routerRecipes.post("/recipes/comment", authenticateToken, addingComment);
+routerRecipes.post(
+  "/recipes/showAllComments",
+  authenticateToken,
+  getAllComments
+);
+routerRecipes.post(
+  "/recipes/savedRecipes",
+  authenticateToken,
+  displayFilteredRecipesByFeelings
+);
+routerRecipes.post("/recipes/saveRecipe", authenticateToken, saveRecipe);
+routerRecipes.post(
+  "/recipes/addingCustomRecipe",
+  authenticateToken,
+  addingCustomRecipe
+);
+routerRecipes.get("/recipes/myComments", authenticateToken, getMyComments);
+routerRecipes.delete(
+  "/recipes/deleteComment",
+  authenticateToken,
+  deleteComment
+);
+routerRecipes.put("/recipes/updateComment", authenticateToken, UpdateComment);
 
 export default routerRecipes;

@@ -44,12 +44,14 @@ function Login(props) {
       console.log(err);
       if (err.response.status === 404) {
         setIsExist({ ...isExist, isExist: false, msg: err.response.data.msg });
+        dispatch(isLogin(false));
       } else if (err.response.status === 401) {
         setIsExist({
           ...isExist,
           validPassword: false,
           msg: err.response.data.msg,
         });
+        dispatch(isLogin(false));
       }
     }
   };
