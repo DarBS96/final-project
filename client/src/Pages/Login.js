@@ -81,20 +81,34 @@ function Login(props) {
             <span className="login-text">Login</span>
           </Button>
         </form>
+        {!isExist.isExist && (
+          <div
+            style={{
+              marginTop: "20px",
+              color: "red",
+              fontSize: "20px",
+              fontWeight: "bold",
+            }}
+          >
+            <p>{isExist.msg}</p>
+          </div>
+        )}
+        {!isExist.validPassword && (
+          <div
+            style={{
+              marginTop: "20px",
+              color: "red",
+              fontSize: "20px",
+              fontWeight: "bold",
+            }}
+          >
+            <p>{isExist.msg}</p>
+          </div>
+        )}
         <Link className="register-link" to={"/register"}>
           Not registered yet? sign up!
         </Link>
       </div>
-      {!isExist.isExist && (
-        <div style={{ marginTop: "20px" }}>
-          <p>{isExist.msg}</p>
-        </div>
-      )}
-      {!isExist.validPassword && (
-        <div style={{ marginTop: "20px" }}>
-          <p>{isExist.msg}</p>
-        </div>
-      )}
     </div>
   );
 }

@@ -103,8 +103,19 @@ function Register(props) {
           Register
         </Button>
       </form>
-      {isExist.isExist && <p>{isExist.msg}</p>}
-      <Link style={{ color: "black" }} to={"/login"}>
+      {isExist.isExist && (
+        <p
+          style={{
+            marginTop: "20px",
+            color: "red",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          {isExist.msg}
+        </p>
+      )}
+      <Link className="login-link" to={"/login"}>
         Already registered? sign in!
       </Link>
     </div>
