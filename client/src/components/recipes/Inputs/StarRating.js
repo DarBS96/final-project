@@ -71,7 +71,7 @@ const StarRating = ({ recipe_id }) => {
             value={Number(value)}
             onChange={(event, newValue) => handleChange(event, newValue)}
           />
-          {ratingsAvg && <div className="votes">{`(${votes})`}</div>}
+          {ratingsAvg && <div className="votes">{`(${votes} votes) `}</div>}
         </div>
       ) : (
         <div className="rating-container">
@@ -83,7 +83,7 @@ const StarRating = ({ recipe_id }) => {
             readOnly
             precision={0.5}
           />
-          {ratingsAvg && <div className="votes">{`(${votes})`}</div>}
+          {ratingsAvg && <div className="votes">{`(${votes} votes) `}</div>}
         </div>
       )}
     </>

@@ -54,15 +54,17 @@ function Recipe(props) {
           </div>
           <div className="preparation-container">
             <h2 className="preparation-title title">Preparation</h2>
-            {preparation
-              ?.map((preparation) => JSON.parse(preparation))
-              .map((preparation, idx) => {
-                return (
-                  <div key={idx} className="preparation">
-                    <p className="li-preparation">{`${preparation.number}. ${preparation.method} `}</p>
-                  </div>
-                );
-              })}
+            <ul key={recipe_id} className="preparation">
+              {preparation
+                ?.map((preparation) => JSON.parse(preparation))
+                .map((preparation, idx) => {
+                  return (
+                    <li className="li-preparation">{`${idx + 1}. ${
+                      preparation.method
+                    } `}</li>
+                  );
+                })}
+            </ul>
           </div>
         </section>
         <div className="author">{author}</div>

@@ -41,15 +41,7 @@ function PreparationInput(props) {
       <div>
         <InputGroup className={"preparation-input-group"}>
           <Form.Control
-            type="number"
-            placeholder="Step 1"
-            onChange={handleChange}
-            name="number"
-            value={values.number}
-            autoComplete="off"
-          />
-          <Form.Control
-            placeholder="Method"
+            placeholder="Preparation"
             onChange={handleChange}
             name="method"
             value={values.method}
