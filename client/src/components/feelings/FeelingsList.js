@@ -38,7 +38,7 @@ function FeelingsList(props) {
 
   return (
     <div>
-      <h1 className="feelingList-title">How you feeling today?</h1>
+      <h1 className="feelingList-title">How do you feel today?</h1>
       <main className="emotions-container">
         <div className="emotion-container">
           <p
