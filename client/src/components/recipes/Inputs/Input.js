@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import "../../.././css/input.css";
 
-function Input({ label, type, id, placeholder, onChange, accept, value }) {
+function Input({ label, type, id, placeholder, onChange, accept, value, maxLength }) {
   return (
     <div>
       <Form.Group className="mb-3 container">
@@ -17,6 +17,7 @@ function Input({ label, type, id, placeholder, onChange, accept, value }) {
           autoComplete="off"
           accept={accept}
           value={value}
+          maxLength={maxLength}
         />
       </Form.Group>
     </div>

@@ -121,6 +121,7 @@ function AddRecipe(props) {
             placeholder={"Made with love by Dana Cohen"}
             onChange={handleChange}
             value={values.author}
+            maxLength={20}
           />
           <div className="file-container">
             <p className="p-customRecipe">upload recipe image</p>

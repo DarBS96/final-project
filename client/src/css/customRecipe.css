@@ -77,7 +77,7 @@ input[type="file"]::file-selector-button {
     }
     input[type="file"] {
         margin: auto;
-        width: 300px;
+        width: 250px;
         margin-bottom: 10px;
     }
     .li-container {
