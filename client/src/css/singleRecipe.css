@@ -236,8 +236,8 @@
         padding: 0;
         margin-top: 20px;
     }
-    .ingredient-container {
-        margin-left: 5px;
+    .ingredients-container {
+        padding: 20px;
     }
     .ingredient {
         margin-left: 0;
@@ -263,12 +263,15 @@
     .li-preparation {
         margin-bottom: 20px;
     }
+    .description {
+        text-overflow: ellipsis;
+    }
     /* .preparation {
         margin: 0;
-    }
-    .ingredient {
-        margin: 0;
     } */
+    .ingredient {
+        margin-left: 10px;
+    }
     .author {
         /* margin-right: 15px;
         margin-bottom: 3px; */

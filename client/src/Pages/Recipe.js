@@ -59,7 +59,7 @@ function Recipe(props) {
                 ?.map((preparation) => JSON.parse(preparation))
                 .map((preparation, idx) => {
                   return (
-                    <li className="li-preparation">{`${idx + 1}. ${
+                    <li key={idx} className="li-preparation">{`${idx + 1}. ${
                       preparation.method
                     } `}</li>
                   );

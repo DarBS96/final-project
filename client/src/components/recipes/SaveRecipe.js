@@ -15,10 +15,9 @@ function SaveRecipe({ recipe_id }) {
   const [isSaved, setIsSaved] = useState(false);
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-
+const btnElement = ref.current;
   useEffect(() => {
     // dispatch(setSelectedRecipe());
-    const btnElement = ref.current;
     const recipeIsSaved = async () => {
       const data = await axios({
         method: "POST",
@@ -34,18 +33,19 @@ function SaveRecipe({ recipe_id }) {
       });
 
       if (data.data.recipeAlreadySaved) {
-        setIsSaved(true);
         dispatch(isRecipeSaved(true));
-        btnElement.style.color = "red";
+        ref.current.style.color = "red";
       } else {
         dispatch(isRecipeSaved(false));
       }
     };
     recipeIsSaved();
-  }, [showModal]);
+  }, [isSaved, showModal, ref.current]);
 
   const handleClick = async (e) => {
-    setShowModal(true);
+  btnElement.style.color = "red";
+  setIsSaved(true)
+  setShowModal(true);
     if (!isSaved) {
       const data = await axios({
         method: "POST",
