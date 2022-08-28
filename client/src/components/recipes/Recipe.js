@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "../.././css/recipeList.css";
 import { setSelectedRecipe } from "../../Redux/features/recipesSlice";
@@ -32,7 +32,7 @@ function Recipe({ recipe }) {
   };
 
   return (
-    <div className="card-container">
+    <div onClick={handleClick} className="card-container">
       <div className="card u-clearfix">
         <div>
           <div className="card-body">

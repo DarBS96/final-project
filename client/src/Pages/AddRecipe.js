@@ -38,20 +38,19 @@ function AddRecipe(props) {
   useEffect(() => {
     const btnElement = ref.current;
     if (
-      photo &&
       values.title &&
       values.description &&
       values.author &&
       ingredients.length >= 1 &&
-      preparation.length >= 1
+      preparation.length >= 1 &&
+      photo
     ) {
-      return () => {
         btnElement.disabled = false;
-      };
     } else {
       btnElement.disabled = true;
+
     }
-  }, [values, showModal, photo]);
+  }, [values, photo, showModal ]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 

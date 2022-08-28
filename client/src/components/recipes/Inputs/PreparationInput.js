@@ -27,7 +27,7 @@ function PreparationInput(props) {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    if (!values.number || !values.method) {
+    if (!values.method) {
       setIsValid(false);
     } else {
       setIsValid(true);

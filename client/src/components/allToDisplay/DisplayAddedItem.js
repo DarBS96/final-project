@@ -32,7 +32,7 @@ function DisplayAddedItem({ ingredients, preparation }) {
       {preparation
         ? preparation.map((method, idx) => (
             <div key={idx} id={method.id} className="li-container">
-              <div className="description-container">{`${method.number}. ${method.method}`}</div>
+              <div className="description-container">{`${idx +1}. ${method.method}`}</div>
               <div className="trash-container">
                 <BsFillTrash2Fill onClick={handleClick} className="trash" />
               </div>

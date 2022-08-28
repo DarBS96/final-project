@@ -24,7 +24,7 @@ function RecipesList(props) {
   return (
     <div className="recipes-container">
       <h1 className="main-title-recipeList">
-        Here you can find all of {name} recipes!
+        Here you can find all of {name} state recipes!
       </h1>
       {isLoading && (
         <Spinner animation="border" role="status">
