@@ -17,13 +17,14 @@
     display: flex;
     align-items: center;
     /* margin-left: 50px; */
-    /* justify-content: center; */
+    justify-content: center;
     cursor: pointer;
 }
 
 .votes {
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 .horizontal {

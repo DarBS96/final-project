@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "../../.././css/starRating.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ratingAvg, setVotes } from "../../../Redux/features/recipesSlice";
+import {
+  displayRatingAvg,
+  setVotes,
+} from "../../../Redux/features/recipesSlice";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 const URL = `${process.env.REACT_APP_URL}/feelingEat/recipes/rating`;
@@ -13,6 +16,7 @@ const StarRating = ({ recipe_id }) => {
   const { ratingsAvg, votes } = useSelector((store) => store.recipesSlice);
   const [value, setValue] = useState(ratingsAvg);
   const [ratingIsExist, setRatingIsExist] = useState(false);
+  console.log(ratingsAvg);
   useEffect(() => {
     const getRatingAvg = async () => {
       const data = await axios({
@@ -26,7 +30,7 @@ const StarRating = ({ recipe_id }) => {
         },
       });
 
-      dispatch(ratingAvg(data.data.ratingAvg));
+      dispatch(displayRatingAvg(data.data.ratingAvg));
 
       dispatch(setVotes(data.data.votes));
       //Check if user can rate
@@ -61,7 +65,6 @@ const StarRating = ({ recipe_id }) => {
     setValue(newValue);
   };
   return (
-    // {Number(ratingsAvg).toFixed(1)} // *Average Number"
     <>
       {!ratingIsExist ? (
         <div className="rating-container">
@@ -71,10 +74,11 @@ const StarRating = ({ recipe_id }) => {
             value={Number(value)}
             onChange={(event, newValue) => handleChange(event, newValue)}
           />
-          {ratingsAvg && <div className="votes">{`(${votes} votes) `}</div>}
+          {ratingsAvg && <div className="votes">{`(${votes}votes) `}</div>}
         </div>
       ) : (
         <div className="rating-container">
+          {ratingsAvg && <div className="votes">{`(${votes} votes)  `}</div>}
           <Rating
             size={"small"}
             className="stars-rating"
@@ -83,7 +87,9 @@ const StarRating = ({ recipe_id }) => {
             readOnly
             precision={0.5}
           />
-          {ratingsAvg && <div className="votes">{`(${votes} votes) `}</div>}
+          {ratingsAvg && (
+            <div className="votes"> {Number(ratingsAvg).toFixed(1)}</div>
+          )}
         </div>
       )}
     </>

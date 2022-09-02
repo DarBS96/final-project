@@ -55,7 +55,7 @@ const recipesReducer = createSlice({
     recipeViews: (state, action) => {
       state.views = action.payload;
     },
-    ratingAvg: (state, action) => {
+    displayRatingAvg: (state, action) => {
       state.ratingsAvg = action.payload;
     },
     setVotes: (state, action) => {
@@ -107,7 +107,7 @@ const recipesReducer = createSlice({
 });
 
 export const {
-  ratingAvg,
+  displayRatingAvg,
   setSelectedRecipe,
   recipeViews,
   showAllComments,
