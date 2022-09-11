@@ -52,7 +52,7 @@ function DisplayComments(props) {
       {isComment ? (
         <div className="comments-container">
           {comments?.map((comment, idx) => {
-            return <Comment key={idx} comment={comment} />;
+            return <Comment isIcon={true} key={idx} comment={comment} />;
           })}
         </div>
       ) : (
