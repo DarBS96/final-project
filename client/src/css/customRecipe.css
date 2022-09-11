@@ -60,6 +60,11 @@ input[type="file"]::file-selector-button {
     padding-left: 15px;
 }
 
+.ingredients-sub-title {
+    font-weight: bold;
+    left: 100%;
+}
+
 @media (max-width: 575.98px) {
     .customRecipe-container {
         width: 375px;

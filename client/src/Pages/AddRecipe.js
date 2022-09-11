@@ -101,6 +101,7 @@ function AddRecipe(props) {
             onChange={handleChange}
             value={values.title}
           />
+          <p className="ingredients-sub-title">Ingredients</p>
           <IngredientsInput />
           <DisplayAddedItem ingredients={ingredients} />
           <PreparationInput />
@@ -114,7 +115,6 @@ function AddRecipe(props) {
             onChange={handleChange}
             value={values.description}
           />
-
           <Input
             type={"text"}
             id={"author"}
